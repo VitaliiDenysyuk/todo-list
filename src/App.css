@@ -1,5 +1,67 @@
 .App {
   text-align: center;
+  color: #282c34;
+  background-image: url("../img/listok.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  resize: both;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.LeftVerticalArea {
+  flex-basis: 5rem;
+}
+
+.RightVerticalArea {
+  flex-basis: calc(100% - 2rem - 5rem); 
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.VerticalTitle {
+  background-color: transparent;
+  font-size: 4rem;
+  font-family: cursive;
+  font-style: italic;  
+  text-orientation:upright;
+  writing-mode: vertical-lr;
+  margin: 0;
+  padding: 0;
+}
+.HorisontalTitle {
+  letter-spacing: 2rem;
+  font-size: 4rem;
+  font-family: cursive;
+  font-style: italic;  
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+.h1 {
+  margin-top: 0px;
+}
+
+.MainInputBlock {
+  display: flex;
+  margin-top: 1rem;
+  flex-basis: 3rem;
+  width: 60%;
+}
+.MainInput {
+  flex-basis: calc(100% - 2rem);
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.ButtonAdd {
+  font-size: 1.5rem;
+  height: 100%;
+  flex-basis: 2rem;
+  padding: 1px;
 }
 
 .App-logo {
@@ -14,14 +76,13 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  color: #282c34;
+  background-color: transparent;
+  /* min-height: 25px; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items:flex-start;
+  justify-content: flex-start;
+  font-size: 24px;
 }
 
 .App-link {
