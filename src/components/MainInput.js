@@ -27,7 +27,7 @@ const MainInput = ({
     return (
         <div className="MainInputBlock">
             <input onChange={inputTextHandler} onKeyDown={onKeyDownHandler} className="MainInput" type="text" value={inputText} ></input>
-            <button className="ButtonAdd">+</button>
+            <button className="ButtonAdd" onClick={buttonAddClick}>+</button>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import OneItemList from "./OneItemList";
 
@@ -11,7 +11,7 @@ const TaskList = ({
             {todoList.map((item, index) =>
                 <OneItemList
                     key={"oneItemList" + index}
-                    index={index}
+                    indexOftask={index}
                     text={item.text}
                     finished={item.finished}
                     todoList={todoList}

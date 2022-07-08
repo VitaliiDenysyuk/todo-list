@@ -1,21 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const OneItemList = ({
-    index,
+    indexOftask,
     text,
     finished,
     todoList,
     setTodoList
 }) => {
+
     const [onEdit, setOnEdit] = useState(false);
     const [newText, setNewText] = useState(text);
+    const [onDelete, setOnDelete] = useState(false);
+    const [textBeforeChange, setTextBeforeChange] = useState(text);
+
+    useEffect(() => {
+        if (textBeforeChange === text && newText) {
+            setNewText(newText)
+        } else {
+            setNewText(text);
+        }
+    }, [todoList, setTodoList])
+
+    useEffect(() => {
+        if (onDelete) {
+            setTimeout(() => deleteFinish(), 900);
+            //deleteFinish();
+            // setOnDelete(false)
+        }
+    }, [onDelete])
+
     const deleteHandler = (e) => {
-        setTodoList(todoList.filter((item, curIndex) => index !== curIndex))
+        console.log(indexOftask);
+        setOnDelete(true);
+        //setTimeout(()=>setOnDelete(false),500);
+        //setTodoList(todoList.filter((item, curIndex) => (indexOftask !== curIndex)))
     }
+
+    const deleteFinish = () => {
+        setOnDelete(false);
+        setTodoList(todoList.filter((item, curIndex) => (indexOftask !== curIndex)))
+    }
+
     const editHandler = (e) => {
-        if (onEdit&&newText!==text) {
+        if (onEdit && newText !== text) {
             setTodoList(todoList.map((item, curIndex) =>
-                index === curIndex ? { ...item, text: newText } : item));
+                indexOftask === curIndex ? { ...item, text: newText } : item));
         }
         setOnEdit(!onEdit);
     }
@@ -24,33 +53,39 @@ const OneItemList = ({
     }
     const finishHandler = (e) => {
         setTodoList(todoList.map((item, curIndex) =>
-            index === curIndex ? { ...item, finished: !item.finished } : item));
+            indexOftask === curIndex ? { ...item, finished: !item.finished } : item));
+    }
+    const onKeyDownHandler = (e) => {
+        if (e.key === 'Enter' && onEdit) {
+            editHandler(undefined);
+        }
     }
     return (
-        <div key={"tl" + index + "div"} className="ListInputBlock">
+        <div key={"tl" + indexOftask + "div"} className="ListInputBlock">
             <input
-                key={"tl" + index + "input"}
+                key={"tl" + indexOftask + "input"}
                 value={newText}
                 type="text"
                 readOnly={!onEdit}
                 onChange={onChangeHandler}
-                className={`ListInput ${finished ? 'Crossed' : ''}`}
+                onKeyDown={onKeyDownHandler}
+                className={`ListInput ${finished ? 'Crossed' : ''}  ${onDelete ? 'BeforeDelete' : ''} `}
             ></input>
 
             <button
-                key={"tl" + index + "edit"}
+                key={"tl" + indexOftask + "edit"}
                 onClick={editHandler}
                 className={`${onEdit ? 'ButtonSave' : 'ButtonEdit'}`}
             ></button>
             <button
-                key={"tl" + index + "delete"}
+                key={"tl" + indexOftask + "delete"}
                 onClick={deleteHandler}
                 className="ButtonDelete"
             ></button>
             <button
-                key={"tl" + index + "finish"}
+                key={"tl" + indexOftask + "finish"}
                 onClick={finishHandler}
-                className="ButtonFinish"
+                className={`${finished ? 'ButtonPinned' : 'ButtonFinish'}`}
             ></button>
         </div>
     )

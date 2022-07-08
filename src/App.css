@@ -138,6 +138,19 @@
   border-width: 1px;
 }
 
+.ButtonPinned {
+  font-size: 1rem;
+  height: 100%;
+  flex-basis: 1.5rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  background: url("../img/pinned.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
+}
+
+.ButtonPinned:hover,
 .ButtonSave:hover,
 .ButtonEdit:hover,
 .ButtonDelete:hover,
@@ -182,4 +195,9 @@
 
 .Crossed {
   text-decoration: line-through solid green 2px;
+}
+
+.BeforeDelete {
+  transform: scalex(0.1);
+  transition: 1s;
 }
