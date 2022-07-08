@@ -80,10 +80,11 @@
   display: flex;
   align-items: flex-end;
   flex-basis: 1.5rem;
+  justify-content: space-between;
  }
 
 .ListInput {
-  flex-basis: calc(100% - 4.5rem);
+  flex-basis: calc(100% - 6rem);
   padding: 0rem 0.5rem 0rem 0.5rem;
   font-size: 1rem;
   height: 1.5rem;
@@ -94,12 +95,22 @@
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
+  background: url("../img/pencil.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
 }
 .ButtonDelete {
   font-size: 1rem;
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
+  background: url("../img/trash.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
 }
 
 .ButtonFinish {
@@ -107,6 +118,17 @@
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
+  background: url("../img/check.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
+}
+.ButtonEdit:hover,
+.ButtonDelete:hover,
+.ButtonFinish:hover{
+  background-color: #e6e6e6;
+  cursor: pointer;
 }
 
 .App-logo {
