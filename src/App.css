@@ -101,6 +101,19 @@
   background-color: #efefef;
   border-width: 1px;
 }
+
+.ButtonSave {
+  font-size: 1rem;
+  height: 100%;
+  flex-basis: 1.5rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  background: url("../img/save.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
+}
+
 .ButtonDelete {
   font-size: 1rem;
   height: 100%;
@@ -124,6 +137,8 @@
   background-color: #efefef;
   border-width: 1px;
 }
+
+.ButtonSave:hover,
 .ButtonEdit:hover,
 .ButtonDelete:hover,
 .ButtonFinish:hover{
@@ -163,4 +178,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Crossed {
+  text-decoration: line-through solid green 2px;
 }

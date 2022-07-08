@@ -12,7 +12,10 @@ const MainInput = ({
     }
     const buttonAddClick = () => {
         if (inputText !== '') {
-            setTodoList([...todoList, inputText])
+            setTodoList([...todoList, {
+                text:inputText,
+                finished:false,
+            }])
             setInputText('')
         }
     }

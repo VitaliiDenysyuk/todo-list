@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 
+import OneItemList from "./OneItemList";
+
 const TaskList = ({
     todoList,
     setTodoList
 }) => {
     return (
         <div className="ListInputSection">
-            {todoList.map((item) =>
-                <div className="ListInputBlock">
-                    <input value={item} type="text" className="ListInput"></input>
-                    <button className="ButtonEdit"></button>
-                    <button className="ButtonDelete"></button>
-                    <button className="ButtonFinish"></button>
-                </div>
+            {todoList.map((item, index) =>
+                <OneItemList
+                    key={"oneItemList" + index}
+                    index={index}
+                    text={item.text}
+                    finished={item.finished}
+                    todoList={todoList}
+                    setTodoList={setTodoList}
+                />
             )}
         </div>
     )
