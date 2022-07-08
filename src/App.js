@@ -1,7 +1,11 @@
+import React, { useEffect, useState } from "react";
 import './App.css';
 import MainInput from './components/MainInput';
+import TaskList from "./components/TaskList";
 
 const App = () => {
+  const [todoList, setTodoList] = useState([]);
+  const [inputText, setInputText] = useState("");
   return (
     <div className="App">
       <section className='LeftVerticalArea'>
@@ -13,7 +17,16 @@ const App = () => {
         <h1 className='HorisontalTitle'>
           list
         </h1>
-        <MainInput />
+        <MainInput
+          todoList={todoList}
+          setTodoList={setTodoList}
+          inputText={inputText}
+          setInputText={setInputText}
+        />
+        <TaskList
+           todoList={todoList}
+           setTodoList={setTodoList}       
+        />
       </section>
     </div>
   );
