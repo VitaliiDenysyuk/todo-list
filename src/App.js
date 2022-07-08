@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import './App.css';
 import MainInput from './components/MainInput';
 import TaskList from "./components/TaskList";
+import useLocalStorage from "./useLocalStorage";
 
 const App = () => {
-  const [todoList, setTodoList] = useState([]);
+
+  const [todoList, setTodoList] = useLocalStorage("todoList","");
   const [inputText, setInputText] = useState("");
+
   return (
     <div className="App">
       <section className='LeftVerticalArea'>
@@ -24,8 +27,8 @@ const App = () => {
           setInputText={setInputText}
         />
         <TaskList
-           todoList={todoList}
-           setTodoList={setTodoList}       
+          todoList={todoList}
+          setTodoList={setTodoList}
         />
       </section>
     </div>
