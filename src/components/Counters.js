@@ -7,7 +7,7 @@ const Counters = ({
 
     for (let key in counter) {
         console.log(key+" "+ counter.key);
-        items.push(<p>{key} : {counter[key]}&nbsp;&nbsp;&nbsp;</p>);
+        items.push(<p key={key}>{key} : {counter[key]}&nbsp;&nbsp;&nbsp;</p>);
     }
     console.log("items", items);
     return (
