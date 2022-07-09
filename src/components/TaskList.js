@@ -4,7 +4,9 @@ import OneItemList from "./OneItemList";
 
 const TaskList = ({
     todoList,
-    setTodoList
+    setTodoList,
+    counter,
+    setCounter,
 }) => {
     return (
         <div className="ListInputSection">

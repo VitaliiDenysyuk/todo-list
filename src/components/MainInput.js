@@ -4,7 +4,9 @@ const MainInput = ({
     todoList,
     setTodoList,
     inputText,
-    setInputText
+    setInputText,
+    counter,
+    setCounter
 }) => {
 
     const inputTextHandler = (e) => {
@@ -17,7 +19,8 @@ const MainInput = ({
                 finished:false,
                 key:Date.now()
             }])
-            setInputText('')
+            setInputText('');
+            setCounter({...counter, created:++counter.created})
         }
     }
     const onKeyDownHandler = (e) => {
