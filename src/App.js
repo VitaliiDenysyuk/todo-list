@@ -26,6 +26,7 @@ const App = () => {
         <div className="TitleAndCounters">
           <h1 className='HorisontalTitle'>
             list
+            <button className="UploadButton"></button>
           </h1>
           <Counters
             counter={counter}
