@@ -15,13 +15,13 @@ const MainInput = ({
     const buttonAddClick = () => {
         if (inputText !== '') {
             setTodoList([...todoList, {
-                text:inputText,
-                finished:false,
-                key:Date.now(),
-                deleted:false,
+                text: inputText,
+                finished: false,
+                key: Date.now(),
+                deleted: false,
             }])
             setInputText('');
-            setCounter({...counter, created:++counter.created})
+            setCounter({ ...counter, created: ++counter.created })
         }
     }
     const onKeyDownHandler = (e) => {

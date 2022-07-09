@@ -19,6 +19,8 @@ const TaskList = ({
                     finished={item.finished}
                     todoList={todoList}
                     setTodoList={setTodoList}
+                    counter={counter}
+                    setCounter={setCounter}
                 />
             )}
         </div>

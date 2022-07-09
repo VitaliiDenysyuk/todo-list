@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './App.css';
+import Counters from "./components/Counters";
 import MainInput from './components/MainInput';
 import TaskList from "./components/TaskList";
 import useLocalStorage from "./useLocalStorage";
@@ -22,9 +23,14 @@ const App = () => {
         </h1>
       </section >
       <section className='RightVerticalArea'>
-        <h1 className='HorisontalTitle'>
-          list
-        </h1>
+        <div className="TitleAndCounters">
+          <h1 className='HorisontalTitle'>
+            list
+          </h1>
+          <Counters
+            counter={counter}
+          />
+        </div>
         <MainInput
           todoList={todoList}
           setTodoList={setTodoList}

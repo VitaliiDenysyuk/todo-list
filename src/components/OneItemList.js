@@ -6,7 +6,9 @@ const OneItemList = ({
     text,
     finished,
     todoList,
-    setTodoList
+    setTodoList,
+    counter,
+    setCounter,
 }) => {
 
     const [onEdit, setOnEdit] = useState(false);
@@ -25,6 +27,7 @@ const OneItemList = ({
     }, [onDelete])
 
     const deleteHandler = (e) => {
+        setCounter({ ...counter, deleted: ++counter.deleted })
         console.log(indexOftask);
         setOnDelete(true);
         setTodoList(todoList.map((item, curIndex) =>
@@ -40,6 +43,7 @@ const OneItemList = ({
         if (onEdit && newText !== text) {
             setTodoList(todoList.map((item, curIndex) =>
                 indexOftask === curIndex ? { ...item, text: newText } : item));
+            setCounter({ ...counter, updated: ++counter.updated })
         }
         setOnEdit(!onEdit);
     }
