@@ -178,6 +178,7 @@ p {
   border-width: 1px;
 }
 
+.ButtonAdd:hover,
 .ButtonPinned:hover,
 .ButtonSave:hover,
 .ButtonEdit:hover,
@@ -185,6 +186,7 @@ p {
 .ButtonFinish:hover{
   background-color: #e6e6e6;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 
 }
 
 .App-logo {
