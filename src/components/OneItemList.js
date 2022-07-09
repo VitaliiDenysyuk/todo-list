@@ -12,34 +12,28 @@ const OneItemList = ({
     const [onEdit, setOnEdit] = useState(false);
     const [newText, setNewText] = useState(text);
     const [onDelete, setOnDelete] = useState(false);
-    const [textBeforeChange, setTextBeforeChange] = useState(text);
 
     useEffect(() => {
-        if (textBeforeChange === text && newText) {
             setNewText(newText)
-        } else {
-            setNewText(text);
-        }
     }, [todoList, setTodoList])
 
     useEffect(() => {
         if (onDelete) {
+            //waited finish effect delete css
             setTimeout(() => deleteFinish(), 900);
-            //deleteFinish();
-            // setOnDelete(false)
         }
     }, [onDelete])
 
     const deleteHandler = (e) => {
         console.log(indexOftask);
         setOnDelete(true);
-        //setTimeout(()=>setOnDelete(false),500);
-        //setTodoList(todoList.filter((item, curIndex) => (indexOftask !== curIndex)))
+        setTodoList(todoList.map((item, curIndex) =>
+        indexOftask === curIndex ? { ...item, deleted: true } : item));   
     }
 
     const deleteFinish = () => {
-        setOnDelete(false);
-        setTodoList(todoList.filter((item, curIndex) => (indexOftask !== curIndex)))
+        //can be not one marked delete
+        setTodoList(todoList.filter((item) => (!item.deleted)))
     }
 
     const editHandler = (e) => {
