@@ -15,6 +15,22 @@ const App = () => {
     deleted: 0
   })
 
+  const uploadButtonHadler = async () => {
+    if (!inputText) {
+      setInputText("Set url for upload here");
+      return;
+    }
+    let response = await fetch(
+      inputText,
+      {
+        method: "GET",
+      }
+    );
+    let body = await response.json();
+    console.log(body);
+
+  }
+
   return (
     <div className="App">
       <section className='LeftVerticalArea'>
@@ -26,7 +42,7 @@ const App = () => {
         <div className="TitleAndCounters">
           <h1 className='HorisontalTitle'>
             list
-            <button className="UploadButton"></button>
+            <button className="UploadButton" onClick={uploadButtonHadler}></button>
           </h1>
           <Counters
             counter={counter}
