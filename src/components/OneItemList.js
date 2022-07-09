@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const OneItemList = ({
+    innerKey,
     indexOftask,
     text,
     finished,
@@ -61,9 +62,9 @@ const OneItemList = ({
         }
     }
     return (
-        <div key={"tl" + indexOftask + "div"} className="ListInputBlock">
+        <div key={"tl" + innerKey + "div"} className="ListInputBlock">
             <input
-                key={"tl" + indexOftask + "input"}
+                key={"tl" + innerKey+ "input"}
                 value={newText}
                 type="text"
                 readOnly={!onEdit}
@@ -73,17 +74,17 @@ const OneItemList = ({
             ></input>
 
             <button
-                key={"tl" + indexOftask + "edit"}
+                key={"tl" + innerKey + "edit"}
                 onClick={editHandler}
                 className={`${onEdit ? 'ButtonSave' : 'ButtonEdit'}`}
             ></button>
             <button
-                key={"tl" + indexOftask + "delete"}
+                key={"tl" + innerKey + "delete"}
                 onClick={deleteHandler}
                 className="ButtonDelete"
             ></button>
             <button
-                key={"tl" + indexOftask + "finish"}
+                key={"tl" + innerKey + "finish"}
                 onClick={finishHandler}
                 className={`${finished ? 'ButtonPinned' : 'ButtonFinish'}`}
             ></button>

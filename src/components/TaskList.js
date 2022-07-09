@@ -10,7 +10,8 @@ const TaskList = ({
         <div className="ListInputSection">
             {todoList.map((item, index) =>
                 <OneItemList
-                    key={"oneItemList" + index}
+                    key={"oneItemList" + item.key}
+                    innerKey = {item.key}
                     indexOftask={index}
                     text={item.text}
                     finished={item.finished}
