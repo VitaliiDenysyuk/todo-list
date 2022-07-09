@@ -15,7 +15,8 @@ const MainInput = ({
             setTodoList([...todoList, {
                 text:inputText,
                 finished:false,
-                key:Date.now()
+                key:Date.now(),
+                deleted:false,
             }])
             setInputText('')
         }
