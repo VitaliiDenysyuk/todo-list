@@ -6,6 +6,8 @@ import TaskListStyled from "./components/TaskList.style";
 import useLocalStorage from "./useLocalStorage";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
 
+import AppStyled from "./App.style";
+
 import uploadPng from "./img/upload.png";
 import cleanPng from "./img/clean.png";
 
@@ -63,7 +65,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <AppStyled>
       <section className='LeftVerticalArea'>
         <h1 className='VerticalTitle'>
           TODO
@@ -106,7 +108,7 @@ const App = () => {
           filter={filter}
         />
       </section>
-    </div>
+    </AppStyled>
   );
 }
 
