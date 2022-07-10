@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { InputWithEffectStyled } from "./OneItemList.style";
+import ButtonWithImage from "./ButtonWithImage.style";
+
+import savePng from "../img/save.png";
+import editPng from "../img/pencil.png";
+import deletePng from "../img/trash.png";
+import finishPng from "../img/check.png";
+import pinnedPng from "../img/pinned.png";
+
 
 const OneItemList = ({
     className,
@@ -15,23 +23,23 @@ const OneItemList = ({
 
     const [onEdit, setOnEdit] = useState(false);
     const [newText, setNewText] = useState(text);
-    const [onDelete, setOnDelete] = useState(false);
+    const [startedDelete, setstartedDelete] = useState(false);
 
     useEffect(() => {
             setNewText(newText)
     }, [todoList, setTodoList])
 
     useEffect(() => {
-        if (onDelete) {
+        if (startedDelete) {
             //waited finish effect delete css
             setTimeout(() => deleteFinish(), 400);
         }
-    }, [onDelete])
+    }, [startedDelete])
 
     const deleteHandler = (e) => {
         setCounter({ ...counter, deleted: ++counter.deleted })
         console.log(indexOftask);
-        setOnDelete(true);
+        setstartedDelete(true);
         setTodoList(todoList.map((item, curIndex) =>
         indexOftask === curIndex ? { ...item, deleted: true } : item));   
     }
@@ -71,24 +79,24 @@ const OneItemList = ({
                 onChange={onChangeHandler}
                 onKeyDown={onKeyDownHandler}
                 finished={finished}
-                onDelete={onDelete}
+                startedDelete={startedDelete}
             ></InputWithEffectStyled>
 
-            <button
+            <ButtonWithImage
                 key={"tl" + innerKey + "edit"}
                 onClick={editHandler}
-                className={`${onEdit ? 'ButtonSave' : 'ButtonEdit'}`}
-            ></button>
-            <button
+                backgroundurl={onEdit ? savePng : editPng}
+            ></ButtonWithImage>
+            <ButtonWithImage
                 key={"tl" + innerKey + "delete"}
                 onClick={deleteHandler}
-                className="ButtonDelete"
-            ></button>
-            <button
+                backgroundurl={deletePng}
+            ></ButtonWithImage>
+            <ButtonWithImage
                 key={"tl" + innerKey + "finish"}
                 onClick={finishHandler}
-                className={`${finished ? 'ButtonPinned' : 'ButtonFinish'}`}
-            ></button>
+                backgroundurl={finished ? pinnedPng : finishPng}
+            ></ButtonWithImage>
         </div>
     )
 }

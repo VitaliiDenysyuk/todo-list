@@ -15,13 +15,22 @@ export const OneItemListStyled = styled(OneItemList)`
     font-size: 1rem;
     height: 1.5rem;  
   }
+
+  & button {
+    font-size: 1rem;
+    height: 100%;
+    flex-basis: 1.5rem;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+    border-width: 1px;
+    min-width: 1.5rem;
+  }
 `;
 
 export const InputWithEffectStyled = styled.input`
     ${props => props.finished && css`
         text-decoration: line-through solid green 2px;    
     `};     
-    ${props => props.onDelete && css`
+    ${props => props.startedDelete && css`
         transform: scalex(0.1);
         transition: 500ms;   
     `};     
