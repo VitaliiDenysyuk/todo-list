@@ -4,6 +4,10 @@ import Counters from "./components/Counters";
 import MainInputStyled from './components/MainInput.style';
 import TaskListStyled from "./components/TaskList.style";
 import useLocalStorage from "./useLocalStorage";
+import { TitleButtonStyled } from "./components/ButtonWithImage.style";
+
+import uploadPng from "./img/upload.png";
+import cleanPng from "./img/clean.png";
 
 const App = () => {
 
@@ -37,25 +41,25 @@ const App = () => {
           key: item.id + ' ' + Date.now(),
           deleted: false,
         })));
-        setInputText("");
-        setCounter({
-          created: body.length,
-          updated: 0,
-          deleted: 0
-        })
+      setInputText("");
+      setCounter({
+        created: body.length,
+        updated: 0,
+        deleted: 0
+      })
     } catch (err) {
       setInputText(`Error: ${err}`);
     }
 
   }
 
-  const cleanButtonHadler = ()=>{
+  const cleanButtonHadler = () => {
     setTodoList([]);
     setCounter({
       created: 0,
       updated: 0,
       deleted: 0
-    })    
+    })
   }
 
   return (
@@ -69,8 +73,16 @@ const App = () => {
         <div className="TitleAndCounters">
           <h1 className='HorisontalTitle'>
             list
-            <button className="UploadButton" onClick={uploadButtonHadler} title="Upload"></button>
-            <button className="CleanButton" onClick={cleanButtonHadler} title="Clean"></button>
+            <TitleButtonStyled
+              backgroundurl={uploadPng}
+              onClick={uploadButtonHadler}
+              title="Upload">
+            </TitleButtonStyled>
+            <TitleButtonStyled
+              backgroundurl={cleanPng}
+              onClick={cleanButtonHadler}
+              title="Clean">
+            </TitleButtonStyled>
           </h1>
           <Counters
             counter={counter}
