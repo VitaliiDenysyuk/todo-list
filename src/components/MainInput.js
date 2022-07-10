@@ -6,7 +6,9 @@ const MainInput = ({
     inputText,
     setInputText,
     counter,
-    setCounter
+    setCounter,
+    filter,
+    setFilter
 }) => {
 
     const inputTextHandler = (e) => {
@@ -24,6 +26,9 @@ const MainInput = ({
             setCounter({ ...counter, created: ++counter.created })
         }
     }
+    const buttonFilterClick = () => {
+        setFilter(!filter);
+    }    
     const onKeyDownHandler = (e) => {
         if (e.key === 'Enter') {
             buttonAddClick();
@@ -33,6 +38,7 @@ const MainInput = ({
         <div className="MainInputBlock">
             <input onChange={inputTextHandler} onKeyDown={onKeyDownHandler} className="MainInput" type="text" value={inputText} ></input>
             <button className="ButtonAdd" onClick={buttonAddClick}>+</button>
+            <button className={filter ? "ButtonFilterNo":"ButtonFilter"} onClick={buttonFilterClick}></button>
         </div>
     )
 }

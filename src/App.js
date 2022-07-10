@@ -9,6 +9,7 @@ const App = () => {
 
   const [todoList, setTodoList] = useLocalStorage("todoList", "");
   const [inputText, setInputText] = useState("");
+  const [filter, setFilter] = useState(false);
   const [counter, setCounter] = useLocalStorage("counter", {
     created: 0,
     updated: 0,
@@ -82,12 +83,15 @@ const App = () => {
           setInputText={setInputText}
           counter={counter}
           setCounter={setCounter}
+          filter={filter}
+          setFilter={setFilter}
         />
         <TaskList
           todoList={todoList}
           setTodoList={setTodoList}
           counter={counter}
           setCounter={setCounter}
+          filter={filter}
         />
       </section>
     </div>

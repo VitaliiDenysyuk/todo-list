@@ -12,12 +12,12 @@
 
 .LeftVerticalArea {
   margin-top: 5rem;
-  flex-basis: 5rem;
+  flex-basis: 1rem;
 }
 
 .RightVerticalArea {
-  flex-basis: calc(100% - 2rem - 5rem); 
-  margin-left: 2rem;
+  flex-basis: calc(100% - 2rem - 1rem); 
+  margin-left: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -25,7 +25,7 @@
 
 .VerticalTitle {
   background-color: transparent;
-  font-size: 4rem;
+  font-size: 3rem;
   font-family: cursive;
   font-style: italic;  
   text-orientation:upright;
@@ -44,7 +44,7 @@
 
 .HorisontalTitle {
   letter-spacing: 2rem;
-  font-size: 4rem;
+  font-size: 3rem;
   font-family: cursive;
   font-style: italic;  
   text-transform: uppercase;
@@ -82,7 +82,7 @@ p {
   margin-bottom: 1rem;
 }
 .MainInput {
-  flex-basis: calc(100% - 2rem);
+  flex-basis: calc(100% - 4rem);
   padding: 0rem 0.5rem 0rem 0.5rem;
   font-size: 1rem;
 }
@@ -100,6 +100,35 @@ p {
   height: 100%;
   flex-basis: 2rem;
   padding: 1px;
+  margin-left: 1px;
+  margin-right: 1px;
+  min-width: 2rem;
+}
+
+.ButtonFilter {
+  font-size: 1.5rem;
+  height: 100%;
+  flex-basis: 2rem;
+  padding: 1px;
+  background: url("../img/filter.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
+  min-width: 2rem;
+}
+
+.ButtonFilterNo {
+  font-size: 1.5rem;
+  height: 100%;
+  flex-basis: 2rem;
+  padding: 1px;
+  background: url("../img/nofilter.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #efefef;
+  border-width: 1px;
+  min-width: 2rem;
 }
 
 .ListInputBlock {
@@ -128,6 +157,7 @@ p {
   background-position: center;
   background-color: #efefef;
   border-width: 1px;
+  min-width: 1.5rem;
 }
 
 .ButtonSave {
@@ -140,6 +170,7 @@ p {
   background-position: center;
   background-color: #efefef;
   border-width: 1px;
+  min-width: 1.5rem;
 }
 
 .ButtonDelete {
@@ -152,6 +183,7 @@ p {
   background-position: center;
   background-color: #efefef;
   border-width: 1px;
+  min-width: 1.5rem;
 }
 
 .ButtonFinish {
@@ -164,6 +196,7 @@ p {
   background-position: center;
   background-color: #efefef;
   border-width: 1px;
+  min-width: 1.5rem;
 }
 
 .ButtonPinned {
@@ -176,11 +209,12 @@ p {
   background-position: center;
   background-color: #efefef;
   border-width: 1px;
+  min-width: 1.5rem;
 }
 
 .UploadButton{
-  height: 3rem;
-  width: 3rem;
+  height: 2.5rem;
+  width: 2.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
   background: url("../img/upload.png");
   background-repeat: no-repeat;
@@ -191,8 +225,8 @@ p {
 }
 
 .CleanButton {
-  height: 3rem;
-  width: 3rem;
+  height: 2.5rem;
+  width: 2.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
   background: url("../img/clean.png");
   background-repeat: no-repeat;
@@ -201,6 +235,8 @@ p {
   border-width: 1px;
 }
 
+.ButtonFilter:hover,
+.ButtonFilterNo:hover,
 .CleanButton:hover,
 .ButtonAdd:hover,
 .UploadButton:hover,
@@ -219,11 +255,6 @@ p {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   color: #282c34;
@@ -239,20 +270,11 @@ p {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .Crossed {
   text-decoration: line-through solid green 2px;
 }
 
 .BeforeDelete {
   transform: scalex(0.1);
-  transition: 1s;
+  transition: 500ms;
 }

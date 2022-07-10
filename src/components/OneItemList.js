@@ -22,7 +22,7 @@ const OneItemList = ({
     useEffect(() => {
         if (onDelete) {
             //waited finish effect delete css
-            setTimeout(() => deleteFinish(), 900);
+            setTimeout(() => deleteFinish(), 400);
         }
     }, [onDelete])
 
