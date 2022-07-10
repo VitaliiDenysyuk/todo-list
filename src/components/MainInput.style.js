@@ -13,6 +13,7 @@ const MainInputStyled = styled(MainInput)`
         padding: 0rem 0.5rem 0rem 0.5rem;
         font-size: 1rem;       
     }
+    
     & button {
         font-size: 1.5rem;
         height: 100%;

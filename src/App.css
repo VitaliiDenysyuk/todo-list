@@ -74,36 +74,8 @@ p {
   padding: 0; 
 }
 
-.MainInput {
-  flex-basis: calc(100% - 4rem);
-  padding: 0rem 0.5rem 0rem 0.5rem;
-  font-size: 1rem;
-}
-
-.ListInputSection {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  width: 80%;  
-  /* flex-basis: 1.5rem; */
-}
 
 
-.ListInputBlock {
-  margin-top: 0.5rem;
-  width: 100%;  
-  display: flex;
-  align-items: flex-end;
-  flex-basis: 1.5rem;
-  justify-content: space-between;
- }
-
-.ListInput {
-  flex-basis: calc(100% - 6rem);
-  padding: 0rem 0.5rem 0rem 0.5rem;
-  font-size: 1rem;
-  height: 1.5rem;
-}
 
 .ButtonEdit {
   font-size: 1rem;
@@ -203,33 +175,4 @@ p {
   background-color: #e6e6e6;
   cursor: pointer;
   box-shadow: 2px 2px 4px 
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
-.App-header {
-  color: #282c34;
-  background-color: transparent;
-  /* min-height: 25px; */
-  display: flex;
-  align-items:flex-start;
-  justify-content: flex-start;
-  font-size: 24px;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.Crossed {
-  text-decoration: line-through solid green 2px;
-}
-
-.BeforeDelete {
-  transform: scalex(0.1);
-  transition: 500ms;
 }

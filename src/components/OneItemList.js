@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { InputWithEffectStyled } from "./OneItemList.style";
 
 const OneItemList = ({
+    className,
     innerKey,
     indexOftask,
     text,
@@ -60,16 +62,17 @@ const OneItemList = ({
         }
     }
     return (
-        <div key={"tl" + innerKey + "div"} className="ListInputBlock">
-            <input
+        <div key={"tl" + innerKey + "div"} className={className}>
+            <InputWithEffectStyled
                 key={"tl" + innerKey+ "input"}
                 value={newText}
                 type="text"
                 readOnly={!onEdit}
                 onChange={onChangeHandler}
                 onKeyDown={onKeyDownHandler}
-                className={`ListInput ${finished ? 'Crossed' : ''}  ${onDelete ? 'BeforeDelete' : ''} `}
-            ></input>
+                finished={finished}
+                onDelete={onDelete}
+            ></InputWithEffectStyled>
 
             <button
                 key={"tl" + innerKey + "edit"}

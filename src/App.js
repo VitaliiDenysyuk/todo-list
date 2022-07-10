@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './App.css';
 import Counters from "./components/Counters";
 import MainInputStyled from './components/MainInput.style';
-import TaskList from "./components/TaskList";
+import TaskListStyled from "./components/TaskList.style";
 import useLocalStorage from "./useLocalStorage";
 
 const App = () => {
@@ -86,7 +86,7 @@ const App = () => {
           filter={filter}
           setFilter={setFilter}
         />
-        <TaskList
+        <TaskListStyled
           todoList={todoList}
           setTodoList={setTodoList}
           counter={counter}

@@ -1,8 +1,9 @@
 import React from "react";
 
-import OneItemList from "./OneItemList";
+import {OneItemListStyled} from "./OneItemList.style";
 
 const TaskList = ({
+    className,
     todoList,
     setTodoList,
     counter,
@@ -10,10 +11,10 @@ const TaskList = ({
     filter
 }) => {
     return (
-        <div className="ListInputSection">
+        <div className={className}>
             {todoList.map((item, index) =>
                 !filter || !item.finished ?
-                    <OneItemList
+                    <OneItemListStyled
                         key={"oneItemList" + item.key}
                         innerKey={item.key}
                         indexOftask={index}
