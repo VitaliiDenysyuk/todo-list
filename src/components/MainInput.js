@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import filterPng from "../img/filter.png";
+import noFilterPng from "../img/nofilter.png"
+import ButtonWithImage from "./ButtonWithImage.style";
 
 const MainInput = ({
+    className,
     todoList,
     setTodoList,
     inputText,
@@ -35,10 +39,10 @@ const MainInput = ({
         }
     }
     return (
-        <div className="MainInputBlock">
-            <input onChange={inputTextHandler} onKeyDown={onKeyDownHandler} className="MainInput" type="text" value={inputText} ></input>
-            <button className="ButtonAdd" onClick={buttonAddClick}>+</button>
-            <button className={filter ? "ButtonFilterNo":"ButtonFilter"} onClick={buttonFilterClick}></button>
+        <div className={className}>
+            <input onChange={inputTextHandler} onKeyDown={onKeyDownHandler} type="text" value={inputText} ></input>
+            <button onClick={buttonAddClick}>+</button>
+            <ButtonWithImage backgroundurl={filter ? noFilterPng:filterPng} onClick={buttonFilterClick}></ButtonWithImage>
         </div>
     )
 }

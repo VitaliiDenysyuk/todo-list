@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './App.css';
 import Counters from "./components/Counters";
-import MainInput from './components/MainInput';
+import MainInputStyled from './components/MainInput.style';
 import TaskList from "./components/TaskList";
 import useLocalStorage from "./useLocalStorage";
 
@@ -76,7 +76,7 @@ const App = () => {
             counter={counter}
           />
         </div>
-        <MainInput
+        <MainInputStyled
           todoList={todoList}
           setTodoList={setTodoList}
           inputText={inputText}

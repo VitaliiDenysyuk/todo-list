@@ -74,13 +74,6 @@ p {
   padding: 0; 
 }
 
-.MainInputBlock {
-  display: flex;
-  margin-top: 1rem;
-  flex-basis: 2rem;
-  width: 80%;
-  margin-bottom: 1rem;
-}
 .MainInput {
   flex-basis: calc(100% - 4rem);
   padding: 0rem 0.5rem 0rem 0.5rem;
@@ -95,41 +88,6 @@ p {
   /* flex-basis: 1.5rem; */
 }
 
-.ButtonAdd {
-  font-size: 1.5rem;
-  height: 100%;
-  flex-basis: 2rem;
-  padding: 1px;
-  margin-left: 1px;
-  margin-right: 1px;
-  min-width: 2rem;
-}
-
-.ButtonFilter {
-  font-size: 1.5rem;
-  height: 100%;
-  flex-basis: 2rem;
-  padding: 1px;
-  background: url("../img/filter.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #efefef;
-  border-width: 1px;
-  min-width: 2rem;
-}
-
-.ButtonFilterNo {
-  font-size: 1.5rem;
-  height: 100%;
-  flex-basis: 2rem;
-  padding: 1px;
-  background: url("../img/nofilter.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #efefef;
-  border-width: 1px;
-  min-width: 2rem;
-}
 
 .ListInputBlock {
   margin-top: 0.5rem;
@@ -152,7 +110,7 @@ p {
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/pencil.png");
+  background: url("./img/pencil.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
@@ -165,7 +123,7 @@ p {
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/save.png");
+  background: url("./img/save.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
@@ -178,7 +136,7 @@ p {
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/trash.png");
+  background: url("./img/trash.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
@@ -191,7 +149,7 @@ p {
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/check.png");
+  background: url("./img/check.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
@@ -204,7 +162,7 @@ p {
   height: 100%;
   flex-basis: 1.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/pinned.png");
+  background: url("./img/pinned.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
@@ -216,7 +174,7 @@ p {
   height: 2.5rem;
   width: 2.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/upload.png");
+  background: url("./img/upload.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
@@ -228,17 +186,14 @@ p {
   height: 2.5rem;
   width: 2.5rem;
   padding: 0rem 0.5rem 0rem 0.5rem;
-  background: url("../img/clean.png");
+  background: url("./img/clean.png");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #efefef;
   border-width: 1px;
 }
 
-.ButtonFilter:hover,
-.ButtonFilterNo:hover,
 .CleanButton:hover,
-.ButtonAdd:hover,
 .UploadButton:hover,
 .ButtonPinned:hover,
 .ButtonSave:hover,
