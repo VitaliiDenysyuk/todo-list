@@ -19,6 +19,7 @@ const OneItemList = ({
     setTodoList,
     counter,
     setCounter,
+    textColor
 }) => {
 
     const [onEdit, setOnEdit] = useState(false);
@@ -80,6 +81,7 @@ const OneItemList = ({
                 onKeyDown={onKeyDownHandler}
                 finished={finished}
                 startedDelete={startedDelete}
+                textColor={textColor}
             ></InputWithEffectStyled>
 
             <ButtonWithImage

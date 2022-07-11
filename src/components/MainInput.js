@@ -2,6 +2,7 @@ import React from "react";
 import filterPng from "../img/filter.png";
 import noFilterPng from "../img/nofilter.png"
 import ButtonWithImage from "./ButtonWithImage.style";
+import { getRandomColor } from "./help/general";
 
 const MainInput = ({
     className,
@@ -25,6 +26,7 @@ const MainInput = ({
                 finished: false,
                 key: Date.now(),
                 deleted: false,
+                textColor: getRandomColor()
             }])
             setInputText('');
             setCounter({ ...counter, created: ++counter.created })

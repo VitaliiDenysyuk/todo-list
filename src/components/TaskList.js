@@ -24,6 +24,7 @@ const TaskList = ({
                         setTodoList={setTodoList}
                         counter={counter}
                         setCounter={setCounter}
+                        textColor={item.textColor}
                     />
                     : undefined
             )}

@@ -27,6 +27,7 @@ export const OneItemListStyled = styled(OneItemList)`
 `;
 
 export const InputWithEffectStyled = styled.input`
+    color: ${props => props.textColor || "black"};
     ${props => props.finished && css`
         text-decoration: line-through solid green 2px;    
     `};     
