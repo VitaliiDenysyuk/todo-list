@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import './App.css';
+
 import Counters from "./components/Counters";
 import MainInputStyled from './components/MainInput.style';
 import TaskListStyled from "./components/TaskList.style";
 import useLocalStorage from "./useLocalStorage";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
 
-import AppStyled from "./App.style";
+import './App.mudule.scss';
 
 import uploadPng from "./img/upload.png";
 import cleanPng from "./img/clean.png";
@@ -65,8 +65,8 @@ const App = () => {
   }
 
   return (
-    <AppStyled>
-      <section className='LeftVerticalArea'>
+    <div className="App">
+      <section  className='LeftVerticalArea'>
         <h1 className='VerticalTitle'>
           TODO
         </h1>
@@ -108,7 +108,7 @@ const App = () => {
           filter={filter}
         />
       </section>
-    </AppStyled>
+    </div>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import CountersStyled from "./Counters.style";
 
 const Counters = ({
     counter
@@ -11,9 +12,9 @@ const Counters = ({
     }
     console.log("items", items);
     return (
-        <div className="Counters">
+        <CountersStyled>
             {items}
-        </div>
+        </CountersStyled>
 
     )
 }
