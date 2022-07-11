@@ -15,7 +15,7 @@ import { getRandomColor } from "./components/help/general";
 
 const App = () => {
 
-  const [todoList, setTodoList] = useLocalStorage("todoList", "");
+  const [todoList, setTodoList] = useLocalStorage("todoList", []);
   const [inputText, setInputText] = useState("");
   const [filter, setFilter] = useState(false);
   const [counter, setCounter] = useLocalStorage("counter", {
