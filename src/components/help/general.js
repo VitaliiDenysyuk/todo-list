@@ -1,8 +1,8 @@
 export const getRandomColor = () => {
     const rgb = {
-        r: randomInt(0, 200),
-        g: randomInt(0, 200),
-        b: randomInt(0, 200)
+        r: randomInt(0, 255),
+        g: randomInt(0, 255),
+        b: randomInt(0, 255)
     }
 
     while ((rgb.r + rgb.g + rgb.b) > 500) {
