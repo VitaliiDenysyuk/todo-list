@@ -30,13 +30,13 @@ const App = () => {
       return;
     }
     try {
-      let response = await fetch(
+      const response = await fetch(
         inputText,
         {
           method: "GET",
         }
       );
-      let body = await response.json();
+      const body = await response.json();
       console.log(body);
       setTodoList(
         body.map(item => ({
