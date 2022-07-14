@@ -2,7 +2,7 @@ import React from "react";
 import filterPng from "../img/filter.png";
 import noFilterPng from "../img/nofilter.png"
 import ButtonWithImage from "./ButtonWithImage.style";
-import { getRandomColor } from "./help/general";
+import { getRandomColor } from "../help/general";
 
 const MainInput = ({
     className,

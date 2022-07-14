@@ -11,7 +11,7 @@ import './App.mudule.scss';
 import uploadPng from "./img/upload.png";
 import cleanPng from "./img/clean.png";
 
-import { getRandomColor } from "./components/help/general";
+import { getRandomColor } from "./help/general";
 
 const App = () => {
 
