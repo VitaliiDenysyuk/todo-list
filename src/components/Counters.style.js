@@ -6,11 +6,10 @@ const CountersStyled = styled.div`
   justify-content: space-between;
   font-size: 1rem;
   font-family: cursive;
-  font-style: italic;  
+  font-style: italic;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
 `;
 
 export default CountersStyled;
-
