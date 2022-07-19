@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import MainInput from "./MainInput";
+import MainInput, {MainInputProps} from "./MainInput";
 
-const MainInputStyled = styled(MainInput)`
+const MainInputStyled = styled(MainInput)<MainInputProps>`
   display: flex;
   margin-top: 1rem;
   flex-basis: 2rem;

@@ -1,8 +1,21 @@
-import React from "react";
+import React, {KeyboardEvent, ChangeEvent} from "react";
 import filterPng from "../img/filter.png";
 import noFilterPng from "../img/nofilter.png";
 import ButtonWithImage from "./ButtonWithImage.style";
 import { getRandomColor } from "../help/general";
+import Counter from "../Counter";
+
+export interface MainInputProps {
+  className?: string;
+  todoList: any;
+  setTodoList: any;
+  inputText: string;
+  setInputText: React.Dispatch<React.SetStateAction<string>>;
+  counter: Counter;
+  setCounter: React.Dispatch<React.SetStateAction<Counter>>;
+  filter: boolean;
+  setFilter: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const MainInput = ({
   className,
@@ -14,8 +27,8 @@ const MainInput = ({
   setCounter,
   filter,
   setFilter,
-}) => {
-  const inputTextHandler = (e) => {
+}: MainInputProps) => {
+  const inputTextHandler = (e:ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
   const buttonAddClick = () => {
@@ -37,7 +50,7 @@ const MainInput = ({
   const buttonFilterClick = () => {
     setFilter(!filter);
   };
-  const onKeyDownHandler = (e) => {
+  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       buttonAddClick();
     }

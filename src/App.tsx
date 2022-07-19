@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
+import Counter from "./Counter";
+import OneItem from "./OneItem";
+
 import Counters from "./components/Counters";
 import MainInputStyled from "./components/MainInput.style";
 import TaskListStyled from "./components/TaskList.style";
-import useLocalStorage from "./useLocalStorage";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
+
+import useLocalStorage from "./useLocalStorage";
 
 import "./App.mudule.scss";
 
@@ -13,15 +17,24 @@ import cleanPng from "./img/clean.png";
 
 import { getRandomColor } from "./help/general";
 
+interface OneItemUpload {
+  text: string;
+  isCompleted: boolean;
+  id: string;
+}
+
 const App = () => {
-  const [todoList, setTodoList] = useLocalStorage("todoList", []);
-  const [inputText, setInputText] = useState("");
-  const [filter, setFilter] = useState(false);
-  const [counter, setCounter] = useLocalStorage("counter", {
+  const initTodoList: OneItem[]=[];
+  const initCounter: Counter = {
     created: 0,
     updated: 0,
     deleted: 0,
-  });
+  };
+
+  const [todoList, setTodoList] = useLocalStorage("todoList", initTodoList);
+  const [inputText, setInputText] = useState("");
+  const [filter, setFilter] = useState(false);
+  const [counter, setCounter] = useLocalStorage("counter", initCounter);
 
   const uploadButtonHadler = async () => {
     if (!inputText) {
@@ -34,7 +47,7 @@ const App = () => {
       });
       const body = await response.json();
       setTodoList(
-        body.map((item) => ({
+        body.map((item: OneItemUpload) => ({
           text: item.text,
           finished: item.isCompleted,
           key: item.id + " " + Date.now(),
@@ -55,11 +68,7 @@ const App = () => {
 
   const cleanButtonHadler = () => {
     setTodoList([]);
-    setCounter({
-      created: 0,
-      updated: 0,
-      deleted: 0,
-    });
+    setCounter(initCounter);
   };
 
   return (
@@ -82,7 +91,7 @@ const App = () => {
               title="Clean"
             ></TitleButtonStyled>
           </h1>
-          <Counters counter={counter} />
+          <Counters {...counter} />
         </div>
         <MainInputStyled
           todoList={todoList}

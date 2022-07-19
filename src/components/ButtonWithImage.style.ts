@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const ButtonWithImage = styled.button`
+interface BackgroundurlProps {
+  backgroundurl?: any;
+}
+
+export const ButtonWithImage = styled.button<BackgroundurlProps>`
   ${(props) =>
     props.backgroundurl &&
     css`

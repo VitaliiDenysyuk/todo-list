@@ -1,6 +1,16 @@
 import React from "react";
 
 import { OneItemListStyled } from "./OneItemList.style";
+import ICounter from "../Counter";
+
+export interface TaskListProps {
+  className?: string;
+  todoList: any;
+  setTodoList: any;
+  counter: ICounter;
+  setCounter: React.Dispatch<React.SetStateAction<ICounter>>;
+  filter: boolean;
+}
 
 const TaskList = ({
   className,
@@ -9,7 +19,7 @@ const TaskList = ({
   counter,
   setCounter,
   filter,
-}) => {
+}: TaskListProps) => {
   return (
     <div className={className}>
       {todoList.map((item, index) =>

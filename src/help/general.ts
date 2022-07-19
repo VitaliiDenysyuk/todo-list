@@ -12,6 +12,6 @@ export const getRandomColor = () => {
   return "#" + rgb.r.toString(16) + rgb.g.toString(16) + rgb.b.toString(16);
 };
 
-const randomInt = (from, to) => {
+const randomInt = (from: number, to: number) => {
   return Math.round(from - 0.5 + Math.random() * (to - from + 1));
 };
