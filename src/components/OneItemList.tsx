@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+  MouseEvent,
+  ChangeEvent,
+  KeyboardEvent,
+} from "react";
 import { InputWithEffectStyled } from "./OneItemList.style";
 import ButtonWithImage from "./ButtonWithImage.style";
 
@@ -7,6 +13,22 @@ import editPng from "../img/pencil.png";
 import deletePng from "../img/trash.png";
 import finishPng from "../img/check.png";
 import pinnedPng from "../img/pinned.png";
+
+import Counter from "../Counter";
+import OneItem from "../OneItem";
+
+export interface OneItemListProps {
+  className?: string;
+  innerKey: string;
+  indexOftask: number;
+  text: string;
+  finished: boolean;
+  todoList: any;
+  setTodoList: any;
+  counter: Counter;
+  setCounter: React.Dispatch<React.SetStateAction<Counter>>;
+  textColor: string;
+}
 
 const OneItemList = ({
   className,
@@ -19,7 +41,7 @@ const OneItemList = ({
   counter,
   setCounter,
   textColor,
-}) => {
+}: OneItemListProps) => {
   const [onEdit, setOnEdit] = useState(false);
   const [newText, setNewText] = useState(text);
   const [startedDelete, setstartedDelete] = useState(false);
@@ -35,11 +57,11 @@ const OneItemList = ({
     }
   }, [startedDelete]);
 
-  const deleteHandler = (e) => {
+  const deleteHandler = (e: MouseEvent<HTMLButtonElement>) => {
     setCounter({ ...counter, deleted: ++counter.deleted });
     setstartedDelete(true);
     setTodoList(
-      todoList.map((item, curIndex) =>
+      todoList.map((item: OneItem, curIndex: number) =>
         indexOftask === curIndex ? { ...item, deleted: true } : item
       )
     );
@@ -47,13 +69,13 @@ const OneItemList = ({
 
   const deleteFinish = () => {
     //can be not one marked delete
-    setTodoList(todoList.filter((item) => !item.deleted));
+    setTodoList(todoList.filter((item:OneItem) => !item.deleted));
   };
 
-  const editHandler = (e) => {
+  const editHandler = (e?: MouseEvent<HTMLButtonElement>) => {
     if (onEdit && newText !== text) {
       setTodoList(
-        todoList.map((item, curIndex) =>
+        todoList.map((item: OneItem, curIndex: number) =>
           indexOftask === curIndex ? { ...item, text: newText } : item
         )
       );
@@ -61,17 +83,17 @@ const OneItemList = ({
     }
     setOnEdit(!onEdit);
   };
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setNewText(e.target.value);
   };
-  const finishHandler = (e) => {
+  const finishHandler = (e: MouseEvent<HTMLButtonElement>) => {
     setTodoList(
-      todoList.map((item, curIndex) =>
+      todoList.map((item:OneItem, curIndex: number) =>
         indexOftask === curIndex ? { ...item, finished: !item.finished } : item
       )
     );
   };
-  const onKeyDownHandler = (e) => {
+  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && onEdit) {
       editHandler(undefined);
     }

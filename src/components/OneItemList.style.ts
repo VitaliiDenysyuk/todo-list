@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import OneItemList from "./OneItemList";
+import OneItemList, {OneItemListProps} from "./OneItemList";
 
-export const OneItemListStyled = styled(OneItemList)`
+export const OneItemListStyled = styled(OneItemList)<OneItemListProps>`
   margin-top: 0.5rem;
   width: 100%;
   display: flex;
@@ -26,7 +26,13 @@ export const OneItemListStyled = styled(OneItemList)`
   }
 `;
 
-export const InputWithEffectStyled = styled.input`
+interface AdditionalState{
+  textColor: string;
+  finished: boolean;
+  startedDelete: boolean;
+}
+
+export const InputWithEffectStyled = styled.input<AdditionalState>`
   color: ${(props) => props.textColor || "black"};
   ${(props) =>
     props.finished &&

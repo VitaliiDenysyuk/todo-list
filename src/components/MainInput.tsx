@@ -1,4 +1,4 @@
-import React, {KeyboardEvent, ChangeEvent} from "react";
+import React, { KeyboardEvent, ChangeEvent } from "react";
 import filterPng from "../img/filter.png";
 import noFilterPng from "../img/nofilter.png";
 import ButtonWithImage from "./ButtonWithImage.style";
@@ -28,7 +28,7 @@ const MainInput = ({
   filter,
   setFilter,
 }: MainInputProps) => {
-  const inputTextHandler = (e:ChangeEvent<HTMLInputElement>) => {
+  const inputTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
   const buttonAddClick = () => {

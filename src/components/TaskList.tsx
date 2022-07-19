@@ -1,14 +1,15 @@
 import React from "react";
 
 import { OneItemListStyled } from "./OneItemList.style";
-import ICounter from "../Counter";
+import Counter from "../Counter";
+import OneItem from "../OneItem";
 
 export interface TaskListProps {
   className?: string;
   todoList: any;
   setTodoList: any;
-  counter: ICounter;
-  setCounter: React.Dispatch<React.SetStateAction<ICounter>>;
+  counter: Counter;
+  setCounter: React.Dispatch<React.SetStateAction<Counter>>;
   filter: boolean;
 }
 
@@ -22,7 +23,7 @@ const TaskList = ({
 }: TaskListProps) => {
   return (
     <div className={className}>
-      {todoList.map((item, index) =>
+      {todoList.map((item:OneItem, index: number) =>
         !filter || !item.finished ? (
           <OneItemListStyled
             key={"oneItemList" + item.key}
