@@ -1,4 +1,4 @@
-export const getRandomColor = () => {
+export const getRandomColor = ():string => {
   const rgb = {
     r: randomInt(0, 255),
     g: randomInt(0, 255),

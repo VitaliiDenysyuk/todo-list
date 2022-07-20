@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface BackgroundurlProps {
-  backgroundurl?: any;
+  backgroundurl?: string;
 }
 
 export const ButtonWithImage = styled.button<BackgroundurlProps>`
