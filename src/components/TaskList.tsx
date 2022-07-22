@@ -1,15 +1,12 @@
 import React from "react";
 
 import { OneItemListStyled } from "./OneItemList.style";
-import Counter from "../Counter";
 import OneItem from "../OneItem";
 
 export interface TaskListProps {
   className?: string;
   todoList: any;
   setTodoList: any;
-  counter: Counter;
-  setCounter: React.Dispatch<React.SetStateAction<Counter>>;
   filter: boolean;
 }
 
@@ -17,8 +14,6 @@ const TaskList = ({
   className,
   todoList,
   setTodoList,
-  counter,
-  setCounter,
   filter,
 }: TaskListProps) => {
   return (
@@ -33,8 +28,6 @@ const TaskList = ({
             finished={item.finished}
             todoList={todoList}
             setTodoList={setTodoList}
-            counter={counter}
-            setCounter={setCounter}
             textColor={item.textColor}
           />
         ) : undefined

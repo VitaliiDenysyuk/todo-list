@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-import Counter from "./Counter";
 import OneItem from "./OneItem";
 
 import Counters from "./components/Counters";
 import MainInputStyled from "./components/MainInput.style";
 import TaskListStyled from "./components/TaskList.style";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
+
+import { useAppDispatch, useAppSelector } from './app/hook';
+import { incrementCreated, reset } from './features/counters/counter-slice';
 
 import useLocalStorage from "./useLocalStorage";
 
@@ -25,16 +27,14 @@ interface OneItemUpload {
 
 const App = () => {
   const initTodoList: OneItem[]=[];
-  const initCounter: Counter = {
-    created: 0,
-    updated: 0,
-    deleted: 0,
-  };
+
+  const counter = useAppSelector((state) => state.counters);
+  const dispatch = useAppDispatch();
 
   const [todoList, setTodoList] = useLocalStorage("todoList", initTodoList);
   const [inputText, setInputText] = useState("");
   const [filter, setFilter] = useState(false);
-  const [counter, setCounter] = useLocalStorage("counter", initCounter);
+
 
   const uploadButtonHadler = async () => {
     if (!inputText) {
@@ -56,11 +56,8 @@ const App = () => {
         }))
       );
       setInputText("");
-      setCounter({
-        created: body.length,
-        updated: 0,
-        deleted: 0,
-      });
+      dispatch(incrementCreated(body.body.length));
+
     } catch (err) {
       setInputText(`Error: ${err}`);
     }
@@ -68,7 +65,7 @@ const App = () => {
 
   const cleanButtonHadler = () => {
     setTodoList([]);
-    setCounter(initCounter);
+    dispatch(reset());
   };
 
   return (
@@ -98,16 +95,12 @@ const App = () => {
           setTodoList={setTodoList}
           inputText={inputText}
           setInputText={setInputText}
-          counter={counter}
-          setCounter={setCounter}
           filter={filter}
           setFilter={setFilter}
         />
         <TaskListStyled
           todoList={todoList}
           setTodoList={setTodoList}
-          counter={counter}
-          setCounter={setCounter}
           filter={filter}
         />
       </section>

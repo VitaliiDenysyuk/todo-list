@@ -14,8 +14,10 @@ import deletePng from "../img/trash.png";
 import finishPng from "../img/check.png";
 import pinnedPng from "../img/pinned.png";
 
-import Counter from "../Counter";
 import OneItem from "../OneItem";
+
+import { useAppDispatch } from '../app/hook';
+import { incrementUpdated, incrementDeleted } from '../features/counters/counter-slice';
 
 export interface OneItemListProps {
   className?: string;
@@ -25,8 +27,6 @@ export interface OneItemListProps {
   finished: boolean;
   todoList: any;
   setTodoList: any;
-  counter: Counter;
-  setCounter: React.Dispatch<React.SetStateAction<Counter>>;
   textColor: string;
 }
 
@@ -38,10 +38,9 @@ const OneItemList = ({
   finished,
   todoList,
   setTodoList,
-  counter,
-  setCounter,
   textColor,
 }: OneItemListProps) => {
+  const dispatch = useAppDispatch();
   const [onEdit, setOnEdit] = useState(false);
   const [newText, setNewText] = useState(text);
   const [startedDelete, setstartedDelete] = useState(false);
@@ -58,7 +57,7 @@ const OneItemList = ({
   }, [startedDelete]);
 
   const deleteHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    setCounter({ ...counter, deleted: ++counter.deleted });
+    dispatch(incrementDeleted(1));
     setstartedDelete(true);
     setTodoList(
       todoList.map((item: OneItem, curIndex: number) =>
@@ -79,7 +78,7 @@ const OneItemList = ({
           indexOftask === curIndex ? { ...item, text: newText } : item
         )
       );
-      setCounter({ ...counter, updated: ++counter.updated });
+      dispatch(incrementUpdated(1));
     }
     setOnEdit(!onEdit);
   };

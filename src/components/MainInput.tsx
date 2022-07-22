@@ -3,7 +3,9 @@ import filterPng from "../img/filter.png";
 import noFilterPng from "../img/nofilter.png";
 import ButtonWithImage from "./ButtonWithImage.style";
 import { getRandomColor } from "../help/general";
-import Counter from "../Counter";
+import { useAppDispatch } from '../app/hook';
+import { incrementCreated } from '../features/counters/counter-slice';
+
 
 export interface MainInputProps {
   className?: string;
@@ -11,8 +13,6 @@ export interface MainInputProps {
   setTodoList: any;
   inputText: string;
   setInputText: React.Dispatch<React.SetStateAction<string>>;
-  counter: Counter;
-  setCounter: React.Dispatch<React.SetStateAction<Counter>>;
   filter: boolean;
   setFilter: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -23,11 +23,10 @@ const MainInput = ({
   setTodoList,
   inputText,
   setInputText,
-  counter,
-  setCounter,
   filter,
   setFilter,
 }: MainInputProps) => {
+  const dispatch = useAppDispatch();
   const inputTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
@@ -44,7 +43,7 @@ const MainInput = ({
         },
       ]);
       setInputText("");
-      setCounter({ ...counter, created: ++counter.created });
+      dispatch(incrementCreated(1));
     }
   };
   const buttonFilterClick = () => {
