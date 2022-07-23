@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactModal from "react-modal";
 
 import OneItem from "./OneItem";
 
@@ -7,8 +8,8 @@ import MainInputStyled from "./components/MainInput.style";
 import TaskListStyled from "./components/TaskList.style";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
 
-import { useAppDispatch, useAppSelector } from './app/hook';
-import { incrementCreated, reset } from './features/counters/counter-slice';
+import { useAppDispatch, useAppSelector } from "./app/hook";
+import { incrementCreated, reset } from "./features/counters/counter-slice";
 
 import useLocalStorage from "./useLocalStorage";
 
@@ -25,8 +26,23 @@ interface OneItemUpload {
   id: string;
 }
 
+
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
 const App = () => {
-  const initTodoList: OneItem[]=[];
+  
+  let subtitle: HTMLHeadingElement | null;
+  const initTodoList: OneItem[] = [];
 
   const counter = useAppSelector((state) => state.counters);
   const dispatch = useAppDispatch();
@@ -34,7 +50,23 @@ const App = () => {
   const [todoList, setTodoList] = useLocalStorage("todoList", initTodoList);
   const [inputText, setInputText] = useState("");
   const [filter, setFilter] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  ReactModal.setAppElement("#root");
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    if (subtitle) {
+      subtitle.style.color = "#f00";
+    }
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const uploadButtonHadler = async () => {
     if (!inputText) {
@@ -57,7 +89,6 @@ const App = () => {
       );
       setInputText("");
       dispatch(incrementCreated(body.body.length));
-
     } catch (err) {
       setInputText(`Error: ${err}`);
     }
@@ -69,7 +100,28 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div id="app" className="App">
+      <button onClick={openModal}>Open Modal</button>
+      <ReactModal
+        // appElement={document.getElementById('root') as HTMLElement}
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        shouldCloseOnOverlayClick={false}
+        contentLabel="Minimal Modal Example"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        <form>
+          <input />
+          <button>tab navigation</button>
+          <button>stays</button>
+          <button>inside</button>
+          <button>the modal</button>
+        </form>
+      </ReactModal>
       <section className="LeftVerticalArea">
         <h1 className="VerticalTitle">TODO</h1>
       </section>
