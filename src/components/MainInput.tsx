@@ -1,6 +1,4 @@
 import React, { KeyboardEvent, ChangeEvent } from "react";
-import filterPng from "../img/filter.png";
-import noFilterPng from "../img/nofilter.png";
 import ButtonWithImage from "./ButtonWithImage.style";
 import { getRandomColor } from "../help/general";
 import { useAppDispatch } from '../app/hook';
@@ -46,9 +44,7 @@ const MainInput = ({
       dispatch(incrementCreated(1));
     }
   };
-  const buttonFilterClick = () => {
-    setFilter(!filter);
-  };
+
   const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       buttonAddClick();
@@ -62,11 +58,7 @@ const MainInput = ({
         type="text"
         value={inputText}
       ></input>
-      <button onClick={buttonAddClick}>+</button>
-      <ButtonWithImage
-        backgroundurl={filter ? noFilterPng : filterPng}
-        onClick={buttonFilterClick}
-      ></ButtonWithImage>
+
     </div>
   );
 };

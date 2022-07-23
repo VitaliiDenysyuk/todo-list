@@ -10,6 +10,7 @@ import { TitleButtonStyled } from "./components/ButtonWithImage.style";
 
 import { useAppDispatch, useAppSelector } from "./app/hook";
 import { incrementCreated, reset } from "./features/counters/counter-slice";
+import { setModalIsOpen, setModalIsClosed } from "./features/modal/modal-slice";
 
 import useLocalStorage from "./useLocalStorage";
 
@@ -17,6 +18,9 @@ import "./App.mudule.scss";
 
 import uploadPng from "./img/upload.png";
 import cleanPng from "./img/clean.png";
+import filterPng from "./img/filter.png";
+import noFilterPng from "./img/nofilter.png";
+import plusPng from "./img/plus.png";
 
 import { getRandomColor } from "./help/general";
 
@@ -26,46 +30,37 @@ interface OneItemUpload {
   id: string;
 }
 
-
-
 const customStyles = {
   content: {
     top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: "-50%",
+    marginRight: "10%",
+    width: "80%",
     transform: "translate(-50%, -50%)",
   },
 };
 
 const App = () => {
-  
-  let subtitle: HTMLHeadingElement | null;
   const initTodoList: OneItem[] = [];
 
   const counter = useAppSelector((state) => state.counters);
+  const modalIsOpen = useAppSelector((state) => state.modal.value);
+
   const dispatch = useAppDispatch();
 
   const [todoList, setTodoList] = useLocalStorage("todoList", initTodoList);
   const [inputText, setInputText] = useState("");
   const [filter, setFilter] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   ReactModal.setAppElement("#root");
   const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-    if (subtitle) {
-      subtitle.style.color = "#f00";
-    }
+    dispatch(setModalIsOpen());
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
+    dispatch(setModalIsClosed());
   };
 
   const uploadButtonHadler = async () => {
@@ -99,27 +94,30 @@ const App = () => {
     dispatch(reset());
   };
 
+  const buttonFilterClick = () => {
+    setFilter(!filter);
+  };
+
   return (
     <div id="app" className="App">
-      <button onClick={openModal}>Open Modal</button>
       <ReactModal
-        // appElement={document.getElementById('root') as HTMLElement}
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        shouldCloseOnOverlayClick={false}
+        // shouldCloseOnOverlayClick={false}
         contentLabel="Minimal Modal Example"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <h2>Add new task</h2>
         <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
         <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
+          <MainInputStyled
+            todoList={todoList}
+            setTodoList={setTodoList}
+            inputText={inputText}
+            setInputText={setInputText}
+            filter={filter}
+            setFilter={setFilter}
+          />
         </form>
       </ReactModal>
       <section className="LeftVerticalArea">
@@ -139,17 +137,19 @@ const App = () => {
               onClick={cleanButtonHadler}
               title="Clean"
             ></TitleButtonStyled>
+            <TitleButtonStyled
+              backgroundurl={plusPng}
+              onClick={openModal}
+              title="Add"
+            ></TitleButtonStyled>
+            <TitleButtonStyled
+              backgroundurl={filter ? noFilterPng : filterPng}
+              onClick={buttonFilterClick}
+            ></TitleButtonStyled>
           </h1>
           <Counters {...counter} />
         </div>
-        <MainInputStyled
-          todoList={todoList}
-          setTodoList={setTodoList}
-          inputText={inputText}
-          setInputText={setInputText}
-          filter={filter}
-          setFilter={setFilter}
-        />
+
         <TaskListStyled
           todoList={todoList}
           setTodoList={setTodoList}
