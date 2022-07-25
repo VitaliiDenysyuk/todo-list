@@ -19,14 +19,10 @@ const counterSlice = createSlice({
       setStorageValue("counter", state);
     },
     incrementUpdated(state, action: PayloadAction<number>) {
-      // it's okay to do this because immer makes it immutable
-      // under the hood
       state.updated += action.payload;
       setStorageValue("counter", state);
     },
     incrementDeleted(state, action: PayloadAction<number>) {
-      // it's okay to do this because immer makes it immutable
-      // under the hood
       state.deleted += action.payload;
       setStorageValue("counter", state);
     },
@@ -42,6 +38,10 @@ const counterSlice = createSlice({
   },
 });
 
-export const { incrementCreated, incrementDeleted, incrementUpdated, resetCounter } =
-  counterSlice.actions;
+export const {
+  incrementCreated,
+  incrementDeleted,
+  incrementUpdated,
+  resetCounter,
+} = counterSlice.actions;
 export default counterSlice.reducer;

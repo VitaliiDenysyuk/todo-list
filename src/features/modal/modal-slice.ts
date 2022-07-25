@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ModalState {
-    value: boolean;
+  value: boolean;
 }
 
 const initialState: ModalState = {
-    value: false,
-}
+  value: false,
+};
 
 const modalSlice = createSlice({
   name: "modal",
@@ -18,8 +18,6 @@ const modalSlice = createSlice({
       state.value = true;
     },
     setModalIsClosed(state) {
-      // it's okay to do this because immer makes it immutable
-      // under the hood
       state.value = false;
     },
   },
