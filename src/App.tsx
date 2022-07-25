@@ -7,7 +7,10 @@ import TaskListStyled from "./components/TaskList.style";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
 
 import { useAppDispatch, useAppSelector } from "./app/hook";
-import { incrementCreated, resetCounter } from "./features/counters/counter-slice";
+import {
+  incrementCreated,
+  resetCounter,
+} from "./features/counters/counter-slice";
 import { setModalIsOpen, setModalIsClosed } from "./features/modal/modal-slice";
 import { addItem, resetTodoList } from "./features/todoList/todoList-slice";
 
@@ -20,7 +23,7 @@ import noFilterPng from "./img/nofilter.png";
 import plusPng from "./img/plus.png";
 
 import { getRandomColor } from "./help/general";
-
+import { cleanInputText, setInputText } from "./features/inputText/inputText-slice";
 
 interface OneItemUpload {
   text: string;
@@ -46,7 +49,9 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
-  const [inputText, setInputText] = useState("");
+  dispatch(cleanInputText());
+  const inputText: string = useAppSelector((state) => state.inputText.value);
+
   const [filter, setFilter] = useState(false);
 
   ReactModal.setAppElement("#root");
@@ -60,7 +65,7 @@ const App = () => {
 
   const uploadButtonHadler = async () => {
     if (!inputText) {
-      setInputText("Set url for upload here");
+      dispatch(setInputText("Set url for upload here"));
       return;
     }
     try {
@@ -68,22 +73,26 @@ const App = () => {
         method: "GET",
       });
       const body = await response.json();
-      body.map((item: OneItemUpload) => (dispatch(addItem({
-        text: item.text,
-        finished: item.isCompleted,
-        key: item.id + " " + Date.now(),
-        deleted: false,
-        textColor: getRandomColor(),
-      }))));
-      setInputText("");
+      body.map((item: OneItemUpload) =>
+        dispatch(
+          addItem({
+            text: item.text,
+            finished: item.isCompleted,
+            key: item.id + " " + Date.now(),
+            deleted: false,
+            textColor: getRandomColor(),
+          })
+        )
+      );
+      dispatch(cleanInputText());
       dispatch(incrementCreated(body.body.length));
     } catch (err) {
-      setInputText(`Error: ${err}`);
+      dispatch(setInputText(`Error: ${err}`));
     }
   };
 
   const cleanButtonHadler = () => {
-    dispatch(resetTodoList())
+    dispatch(resetTodoList());
     dispatch(resetCounter());
   };
 
@@ -104,8 +113,6 @@ const App = () => {
         <button onClick={closeModal}>close</button>
         <form>
           <MainInputStyled
-            inputText={inputText}
-            setInputText={setInputText}
             filter={filter}
             setFilter={setFilter}
           />
@@ -141,9 +148,7 @@ const App = () => {
           <Counters {...counter} />
         </div>
 
-        <TaskListStyled
-          filter={filter}
-        />
+        <TaskListStyled filter={filter} />
       </section>
     </div>
   );

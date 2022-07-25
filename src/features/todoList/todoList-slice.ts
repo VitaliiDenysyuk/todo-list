@@ -10,6 +10,7 @@ interface PayloadModify {
 const todoListSlice = createSlice({
   name: "todoList",
   initialState: { list: getStorageValue("todoList", []) },
+
   reducers: {
     addItem(state, action: PayloadAction<OneItem>) {
       // it's okay to do this because immer makes it immutable
@@ -17,23 +18,28 @@ const todoListSlice = createSlice({
       state.list.push(action.payload);
       setStorageValue("todoList", state.list);
     },
+
     deleteItem(state) {
       state.list = state.list.filter((item: OneItem) => !item.deleted);
       setStorageValue("todoList", state.list);
     },
+
     markDeleted(state, action: PayloadAction<number>) {
       state.list[action.payload].deleted = true;
       setStorageValue("todoList", state.list);
     },
+
     markFinish(state, action: PayloadAction<number>) {
       state.list[action.payload].finished =
         !state.list[action.payload].finished;
       setStorageValue("todoList", state.list);
     },
+
     changeItem(state, action: PayloadAction<PayloadModify>) {
       state.list[action.payload.indexOftask].text = action.payload.newText;
       setStorageValue("todoList", state.list);
     },
+
     resetTodoList(state) {
       state.list = [];
       setStorageValue("todoList", state.list);
@@ -49,4 +55,5 @@ export const {
   changeItem,
   markFinish,
 } = todoListSlice.actions;
+
 export default todoListSlice.reducer;

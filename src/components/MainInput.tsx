@@ -1,40 +1,41 @@
 import React, { KeyboardEvent, ChangeEvent } from "react";
 import ButtonWithImage from "./ButtonWithImage.style";
 import { getRandomColor } from "../help/general";
-import { useAppDispatch } from '../app/hook';
-import { incrementCreated } from '../features/counters/counter-slice';
+import { useAppDispatch, useAppSelector } from "../app/hook";
+import { incrementCreated } from "../features/counters/counter-slice";
 import { addItem } from "../features/todoList/todoList-slice";
-
+import {
+  cleanInputText,
+  setInputText,
+} from "../features/inputText/inputText-slice";
 
 export interface MainInputProps {
   className?: string;
-  inputText: string;
-  setInputText: React.Dispatch<React.SetStateAction<string>>;
   filter: boolean;
   setFilter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MainInput = ({
-  className,
-  inputText,
-  setInputText,
-  filter,
-  setFilter,
-}: MainInputProps) => {
+const MainInput = ({ className, filter, setFilter }: MainInputProps) => {
   const dispatch = useAppDispatch();
+
+  const inputText = useAppSelector((state) => state.inputText.value);
+
   const inputTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value);
+    dispatch(setInputText(e.target.value));
   };
+
   const buttonAddClick = () => {
     if (inputText !== "") {
-      dispatch(addItem(        {
-        text: inputText,
-        finished: false,
-        key: "" + Date.now(),
-        deleted: false,
-        textColor: getRandomColor(),
-      }))
-      setInputText("");
+      dispatch(
+        addItem({
+          text: inputText,
+          finished: false,
+          key: "" + Date.now(),
+          deleted: false,
+          textColor: getRandomColor(),
+        })
+      );
+      dispatch(cleanInputText());
       dispatch(incrementCreated(1));
     }
   };
@@ -44,6 +45,7 @@ const MainInput = ({
       buttonAddClick();
     }
   };
+
   return (
     <div className={className}>
       <input
@@ -52,7 +54,6 @@ const MainInput = ({
         type="text"
         value={inputText}
       ></input>
-
     </div>
   );
 };
