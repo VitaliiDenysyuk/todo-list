@@ -31,7 +31,7 @@ const counterSlice = createSlice({
       setStorageValue("counter", state);
     },
 
-    reset(state) {
+    resetCounter(state) {
       console.log(resetState);
       console.log(state);
       (Object.keys(resetState) as (keyof typeof resetState)[]).forEach(
@@ -42,6 +42,6 @@ const counterSlice = createSlice({
   },
 });
 
-export const { incrementCreated, incrementDeleted, incrementUpdated, reset } =
+export const { incrementCreated, incrementDeleted, incrementUpdated, resetCounter } =
   counterSlice.actions;
 export default counterSlice.reducer;

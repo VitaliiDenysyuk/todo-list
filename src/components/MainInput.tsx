@@ -3,12 +3,11 @@ import ButtonWithImage from "./ButtonWithImage.style";
 import { getRandomColor } from "../help/general";
 import { useAppDispatch } from '../app/hook';
 import { incrementCreated } from '../features/counters/counter-slice';
+import { addItem } from "../features/todoList/todoList-slice";
 
 
 export interface MainInputProps {
   className?: string;
-  todoList: any;
-  setTodoList: any;
   inputText: string;
   setInputText: React.Dispatch<React.SetStateAction<string>>;
   filter: boolean;
@@ -17,8 +16,6 @@ export interface MainInputProps {
 
 const MainInput = ({
   className,
-  todoList,
-  setTodoList,
   inputText,
   setInputText,
   filter,
@@ -30,16 +27,13 @@ const MainInput = ({
   };
   const buttonAddClick = () => {
     if (inputText !== "") {
-      setTodoList([
-        ...todoList,
-        {
-          text: inputText,
-          finished: false,
-          key: Date.now(),
-          deleted: false,
-          textColor: getRandomColor(),
-        },
-      ]);
+      dispatch(addItem(        {
+        text: inputText,
+        finished: false,
+        key: "" + Date.now(),
+        deleted: false,
+        textColor: getRandomColor(),
+      }))
       setInputText("");
       dispatch(incrementCreated(1));
     }

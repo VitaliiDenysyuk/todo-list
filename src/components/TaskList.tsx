@@ -2,23 +2,18 @@ import React from "react";
 
 import { OneItemListStyled } from "./OneItemList.style";
 import OneItem from "../OneItem";
+import { useAppSelector } from "../app/hook";
 
 export interface TaskListProps {
   className?: string;
-  todoList: any;
-  setTodoList: any;
   filter: boolean;
 }
 
-const TaskList = ({
-  className,
-  todoList,
-  setTodoList,
-  filter,
-}: TaskListProps) => {
+const TaskList = ({ className, filter }: TaskListProps) => {
+  const todoList = useAppSelector((state) => state.todoList.list);
   return (
     <div className={className}>
-      {todoList.map((item:OneItem, index: number) =>
+      {todoList.map((item: OneItem, index: number) =>
         !filter || !item.finished ? (
           <OneItemListStyled
             key={"oneItemList" + item.key}
@@ -26,8 +21,6 @@ const TaskList = ({
             indexOftask={index}
             text={item.text}
             finished={item.finished}
-            todoList={todoList}
-            setTodoList={setTodoList}
             textColor={item.textColor}
           />
         ) : undefined

@@ -14,10 +14,17 @@ import deletePng from "../img/trash.png";
 import finishPng from "../img/check.png";
 import pinnedPng from "../img/pinned.png";
 
-import OneItem from "../OneItem";
-
-import { useAppDispatch } from '../app/hook';
-import { incrementUpdated, incrementDeleted } from '../features/counters/counter-slice';
+import { useAppDispatch } from "../app/hook";
+import {
+  incrementUpdated,
+  incrementDeleted,
+} from "../features/counters/counter-slice";
+import {
+  changeItem,
+  deleteItem,
+  markDeleted,
+  markFinish,
+} from "../features/todoList/todoList-slice";
 
 export interface OneItemListProps {
   className?: string;
@@ -25,8 +32,6 @@ export interface OneItemListProps {
   indexOftask: number;
   text: string;
   finished: boolean;
-  todoList: any;
-  setTodoList: any;
   textColor: string;
 }
 
@@ -36,8 +41,6 @@ const OneItemList = ({
   indexOftask,
   text,
   finished,
-  todoList,
-  setTodoList,
   textColor,
 }: OneItemListProps) => {
   const dispatch = useAppDispatch();
@@ -47,7 +50,7 @@ const OneItemList = ({
 
   useEffect(() => {
     setNewText(newText);
-  }, [todoList, setTodoList]);
+  }, []);
 
   useEffect(() => {
     if (startedDelete) {
@@ -59,25 +62,17 @@ const OneItemList = ({
   const deleteHandler = (e: MouseEvent<HTMLButtonElement>) => {
     dispatch(incrementDeleted(1));
     setstartedDelete(true);
-    setTodoList(
-      todoList.map((item: OneItem, curIndex: number) =>
-        indexOftask === curIndex ? { ...item, deleted: true } : item
-      )
-    );
+    dispatch(markDeleted(indexOftask));
   };
 
   const deleteFinish = () => {
     //can be not one marked delete
-    setTodoList(todoList.filter((item:OneItem) => !item.deleted));
+    dispatch(deleteItem());
   };
 
   const editHandler = (e?: MouseEvent<HTMLButtonElement>) => {
     if (onEdit && newText !== text) {
-      setTodoList(
-        todoList.map((item: OneItem, curIndex: number) =>
-          indexOftask === curIndex ? { ...item, text: newText } : item
-        )
-      );
+      dispatch(changeItem({ indexOftask, newText }));
       dispatch(incrementUpdated(1));
     }
     setOnEdit(!onEdit);
@@ -86,11 +81,7 @@ const OneItemList = ({
     setNewText(e.target.value);
   };
   const finishHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    setTodoList(
-      todoList.map((item:OneItem, curIndex: number) =>
-        indexOftask === curIndex ? { ...item, finished: !item.finished } : item
-      )
-    );
+    dispatch(markFinish(indexOftask));
   };
   const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && onEdit) {
