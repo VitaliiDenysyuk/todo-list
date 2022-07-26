@@ -11,11 +11,9 @@ import {
 
 export interface MainInputProps {
   className?: string;
-  filter: boolean;
-  setFilter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MainInput = ({ className, filter, setFilter }: MainInputProps) => {
+const MainInput = ({ className}: MainInputProps) => {
   const dispatch = useAppDispatch();
 
   const inputText = useAppSelector((state) => state.inputText.value);

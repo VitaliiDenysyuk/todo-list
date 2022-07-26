@@ -23,7 +23,11 @@ import noFilterPng from "./img/nofilter.png";
 import plusPng from "./img/plus.png";
 
 import { getRandomColor } from "./help/general";
-import { cleanInputText, setInputText } from "./features/inputText/inputText-slice";
+import {
+  cleanInputText,
+  setInputText,
+} from "./features/inputText/inputText-slice";
+import { setFiltered, setNoFiltered } from "./features/filter/filter-slice";
 
 interface OneItemUpload {
   text: string;
@@ -46,13 +50,11 @@ const customStyles = {
 const App = () => {
   const counter = useAppSelector((state) => state.counters);
   const modalIsOpen = useAppSelector((state) => state.modal.value);
+  const filter = useAppSelector((state) => state.filter.value);
 
   const dispatch = useAppDispatch();
 
-  dispatch(cleanInputText());
-  const inputText: string = useAppSelector((state) => state.inputText.value);
-
-  const [filter, setFilter] = useState(false);
+  const inputText = useAppSelector((state) => state.inputText.value);
 
   ReactModal.setAppElement("#root");
   const openModal = () => {
@@ -97,7 +99,11 @@ const App = () => {
   };
 
   const buttonFilterClick = () => {
-    setFilter(!filter);
+    if (filter) {
+      dispatch(setNoFiltered())
+    } else {
+      dispatch(setFiltered())
+    }
   };
 
   return (
@@ -112,10 +118,7 @@ const App = () => {
         <h2>Add new task</h2>
         <button onClick={closeModal}>close</button>
         <form>
-          <MainInputStyled
-            filter={filter}
-            setFilter={setFilter}
-          />
+          <MainInputStyled />
         </form>
       </ReactModal>
       <section className="LeftVerticalArea">
@@ -148,7 +151,7 @@ const App = () => {
           <Counters {...counter} />
         </div>
 
-        <TaskListStyled filter={filter} />
+        <TaskListStyled />
       </section>
     </div>
   );

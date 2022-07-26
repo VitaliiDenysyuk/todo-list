@@ -4,6 +4,7 @@ import counterReducer from '../features/counters/counter-slice';
 import modalReducer from '../features/modal/modal-slice';
 import todoListReducer from '../features/todoList/todoList-slice';
 import inputTextReducer from '../features/inputText/inputText-slice';
+import filterReducer from '../features/filter/filter-slice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     modal: modalReducer,
     todoList: todoListReducer,
     inputText: inputTextReducer,
+    filter: filterReducer,
   },
 });
 
