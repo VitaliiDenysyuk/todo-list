@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { OneItemListStyled } from "./OneItemList.style";
 import OneItem from "../OneItem";
@@ -8,8 +8,8 @@ export interface TaskListProps {
   className?: string;
 }
 
-const TaskList = ({ className}: TaskListProps) => {
-  const [filter, setFilter] = useState(false);
+const TaskList = ({ className }: TaskListProps) => {
+  const filter = useAppSelector((state) => state.filter.value);
   const todoList = useAppSelector((state) => state.todoList.list);
   return (
     <div className={className}>

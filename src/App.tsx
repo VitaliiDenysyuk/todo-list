@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactModal from "react-modal";
 
 import Counters from "./components/Counters";
@@ -100,9 +100,9 @@ const App = () => {
 
   const buttonFilterClick = () => {
     if (filter) {
-      dispatch(setNoFiltered())
+      dispatch(setNoFiltered());
     } else {
-      dispatch(setFiltered())
+      dispatch(setFiltered());
     }
   };
 
