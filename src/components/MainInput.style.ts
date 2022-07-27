@@ -1,22 +1,39 @@
 import styled from "styled-components";
-import MainInput, {MainInputProps} from "./MainInput";
+import MainInput, { MainInputProps } from "./MainInput";
+
+export const InputBlockTytleStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+`;
+
+export const InputBlockStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+`;
 
 const MainInputStyled = styled(MainInput)<MainInputProps>`
   display: flex;
+  flex-direction: column;
   margin-top: 1rem;
   flex-basis: 2rem;
-  width: 80%;
+  width: 100%;
   margin-bottom: 1rem;
 
   & input {
-    flex-basis: calc(100% - 4rem);
+    flex-basis: calc(100% - 3.5rem);
     padding: 0rem 0.5rem 0rem 0.5rem;
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 
   & button {
-    font-size: 1.5rem;
-    height: 100%;
+    font-size: 2rem;
+    height: 2rem;
     flex-basis: 2rem;
     padding: 1px;
     margin-left: 1px;

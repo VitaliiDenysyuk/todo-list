@@ -8,7 +8,8 @@ const Counters = (counter: Counter) => {
     <CountersStyled>
       {(Object.keys(counter) as (keyof typeof counter)[]).map((key) => (
         <p key={key}>
-          {key} : {counter[key]}&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;{key} : {counter[key]}
+          
         </p>
       ))}
     </CountersStyled>

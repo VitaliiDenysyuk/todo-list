@@ -1,6 +1,6 @@
-import React from "react";
-import ReactModal from "react-modal";
-
+import React, { FormEvent } from "react";
+//import ReactModalInputStyled from "./components/ReactModalInput.style";
+import ReactModalInput from "react-modal";
 import Counters from "./components/Counters";
 import MainInputStyled from "./components/MainInput.style";
 import TaskListStyled from "./components/TaskList.style";
@@ -11,7 +11,7 @@ import {
   incrementCreated,
   resetCounter,
 } from "./features/counters/counter-slice";
-import { setModalIsOpen, setModalIsClosed } from "./features/modal/modal-slice";
+import { setModalIsClosed, setModalIsOpen } from "./features/modal/modal-slice";
 import { addItem, resetTodoList } from "./features/todoList/todoList-slice";
 
 import "./App.mudule.scss";
@@ -37,13 +37,26 @@ interface OneItemUpload {
 
 const customStyles = {
   content: {
-    top: "50%",
-    left: "50%",
+    fontFamily: "cursive",
+    fontStyle: "italic",
+    fontSize: "2rem",
+    top: "35%",
+    left: "5.5%",
     right: "auto",
     bottom: "auto",
     marginRight: "10%",
-    width: "80%",
-    transform: "translate(-50%, -50%)",
+    width: "70%",
+    paddingTop: "0%",
+    paddingBottom: "0%",
+    border: "2px solid #6e6e6e",
+    background: `linear-gradient(#bbb, transparent 1px),
+     linear-gradient(90deg, #bbb, transparent 1px)`,
+    backgroundSize: "20px 20px",
+    backgroundPosition: "center center",
+    backgroundColor: "white",
+    boxShadow: "4px 4px 7px",
+    color: "#2c2c2c",
+    // transform: "translate(-50%, -50%)",
   },
 };
 
@@ -56,13 +69,9 @@ const App = () => {
 
   const inputText = useAppSelector((state) => state.inputText.value);
 
-  ReactModal.setAppElement("#root");
+  ReactModalInput.setAppElement("#root");
   const openModal = () => {
     dispatch(setModalIsOpen());
-  };
-
-  const closeModal = () => {
-    dispatch(setModalIsClosed());
   };
 
   const uploadButtonHadler = async () => {
@@ -106,21 +115,28 @@ const App = () => {
     }
   };
 
+  const closeModal = () => {
+    dispatch(setModalIsClosed());
+  };
+
+  const handlerOnSubmitMainInput = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <div id="app" className="App">
-      <ReactModal
+      <ReactModalInput
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
+        shouldCloseOnEsc={true}
         style={customStyles}
         // shouldCloseOnOverlayClick={false}
-        contentLabel="Minimal Modal Example"
+        contentLabel="Add new task"
       >
-        <h2>Add new task</h2>
-        <button onClick={closeModal}>close</button>
-        <form>
+        <form onSubmit={handlerOnSubmitMainInput}>
           <MainInputStyled />
         </form>
-      </ReactModal>
+      </ReactModalInput>
       <section className="LeftVerticalArea">
         <h1 className="VerticalTitle">TODO</h1>
       </section>

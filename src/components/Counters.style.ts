@@ -9,7 +9,7 @@ const CountersStyled = styled.div`
   font-style: italic;
   text-transform: uppercase;
   margin: 0;
-  padding: 0;
+  padding: 5px 0 5px 0;
 `;
 
 export default CountersStyled;

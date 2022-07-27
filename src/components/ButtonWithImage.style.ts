@@ -28,4 +28,12 @@ export const TitleButtonStyled = styled(ButtonWithImage)`
   margin-right: 2px;
 `;
 
+export const CloseButtonStyled = styled(ButtonWithImage)`
+  height: 2rem;
+  width: 2rem;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  border-width: 1px;
+  margin-right: 2px;
+`;
+
 export default ButtonWithImage;

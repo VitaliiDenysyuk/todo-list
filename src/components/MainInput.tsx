@@ -8,12 +8,18 @@ import {
   cleanInputText,
   setInputText,
 } from "../features/inputText/inputText-slice";
+import { setModalIsClosed } from "../features/modal/modal-slice";
+import { InputBlockStyled, InputBlockTytleStyled } from "./MainInput.style";
+
+import uploadPng from "../img/upload.png";
+import closePng from "../img/cross.png";
+import plusPng from "../img/plus.png";
 
 export interface MainInputProps {
   className?: string;
 }
 
-const MainInput = ({ className}: MainInputProps) => {
+const MainInput = ({ className }: MainInputProps) => {
   const dispatch = useAppDispatch();
 
   const inputText = useAppSelector((state) => state.inputText.value);
@@ -43,15 +49,33 @@ const MainInput = ({ className}: MainInputProps) => {
       buttonAddClick();
     }
   };
-
+  const closeModal = () => {
+    dispatch(setModalIsClosed());
+  };
   return (
     <div className={className}>
-      <input
-        onChange={inputTextHandler}
-        onKeyDown={onKeyDownHandler}
-        type="text"
-        value={inputText}
-      ></input>
+      <InputBlockTytleStyled>
+        <h2>Add new tasks</h2>
+        <ButtonWithImage
+          type="button"
+          onClick={closeModal}
+          backgroundurl={closePng}
+        ></ButtonWithImage>
+      </InputBlockTytleStyled>
+      <InputBlockStyled>
+        <input
+          autoFocus
+          onChange={inputTextHandler}
+          onKeyDown={onKeyDownHandler}
+          type="text"
+          value={inputText}
+        ></input>
+        <ButtonWithImage
+          type="button"
+          onClick={buttonAddClick}
+          backgroundurl={plusPng}
+        ></ButtonWithImage>
+      </InputBlockStyled>
     </div>
   );
 };
