@@ -31,8 +31,6 @@ const counterSlice = createSlice({
     },
 
     resetCounter(state) {
-      console.log(resetState);
-      console.log(state);
       (Object.keys(resetState) as (keyof typeof resetState)[]).forEach(
         (key) => (state[key] = resetState[key])
       );
