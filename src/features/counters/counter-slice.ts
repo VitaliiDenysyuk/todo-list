@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Counter from "../../Counter";
-import { getStorageValue, setStorageValue } from "../../useLocalStorage";
 
 const resetState: Counter = {
   created: 0,
@@ -10,31 +9,27 @@ const resetState: Counter = {
 
 const counterSlice = createSlice({
   name: "counter",
-  initialState: getStorageValue("counter", resetState),
+  initialState: resetState,
 
   reducers: {
     incrementCreated(state, action: PayloadAction<number>) {
       // it's okay to do this because immer makes it immutable
       // under the hood
       state.created += action.payload;
-      setStorageValue("counter", state);
     },
 
     incrementUpdated(state, action: PayloadAction<number>) {
       state.updated += action.payload;
-      setStorageValue("counter", state);
     },
 
     incrementDeleted(state, action: PayloadAction<number>) {
       state.deleted += action.payload;
-      setStorageValue("counter", state);
     },
 
     resetCounter(state) {
       (Object.keys(resetState) as (keyof typeof resetState)[]).forEach(
         (key) => (state[key] = resetState[key])
       );
-      setStorageValue("counter", state);
     },
   },
 });
