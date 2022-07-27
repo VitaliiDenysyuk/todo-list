@@ -102,6 +102,7 @@ const MainInput = ({ className }: MainInputProps) => {
       </InputBlockTytleStyled>
       <InputBlockStyled>
         <input
+          autoComplete="off"
           placeholder={modalIsOpenKind === "Add" ?"":"Set url for upload here"}
           id="mainInput"
           autoFocus
