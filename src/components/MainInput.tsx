@@ -19,11 +19,17 @@ export interface MainInputProps {
   className?: string;
 }
 
+interface OneItemUpload {
+  text: string;
+  isCompleted: boolean;
+  id: string;
+}
+
 const MainInput = ({ className }: MainInputProps) => {
   const dispatch = useAppDispatch();
 
   const inputText = useAppSelector((state) => state.inputText.value);
-
+  const modalIsOpenKind = useAppSelector((state) => state.modal.kind);
   const inputTextHandler = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setInputText(e.target.value));
   };
@@ -39,9 +45,11 @@ const MainInput = ({ className }: MainInputProps) => {
           textColor: getRandomColor(),
         })
       );
-      dispatch(cleanInputText());
       dispatch(incrementCreated(1));
+      dispatch(cleanInputText());
+      document.getElementById("mainInput")?.focus();
     }
+    
   };
 
   const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -52,10 +60,40 @@ const MainInput = ({ className }: MainInputProps) => {
   const closeModal = () => {
     dispatch(setModalIsClosed());
   };
+
+  const uploadButtonHadler = async () => {
+    if (!inputText) {
+      dispatch(setInputText("Set url for upload here"));
+      return;
+    }
+    try {
+      const response = await fetch(inputText, {
+        method: "GET",
+      });
+      const body = await response.json();
+      body.map((item: OneItemUpload) =>
+        dispatch(
+          addItem({
+            text: item.text,
+            finished: item.isCompleted,
+            key: item.id + " " + Date.now(),
+            deleted: false,
+            textColor: getRandomColor(),
+          })
+        )
+      );
+      dispatch(cleanInputText());
+      dispatch(incrementCreated(body.length));
+      closeModal();
+    } catch (err) {
+      dispatch(setInputText(`Error: ${err}`));
+    }
+  };
+
   return (
     <div className={className}>
       <InputBlockTytleStyled>
-        <h2>Add new tasks</h2>
+        <h2>{modalIsOpenKind} new tasks</h2>
         <ButtonWithImage
           type="button"
           onClick={closeModal}
@@ -64,17 +102,27 @@ const MainInput = ({ className }: MainInputProps) => {
       </InputBlockTytleStyled>
       <InputBlockStyled>
         <input
+          placeholder={modalIsOpenKind === "Add" ?"":"Set url for upload here"}
+          id="mainInput"
           autoFocus
           onChange={inputTextHandler}
           onKeyDown={onKeyDownHandler}
           type="text"
           value={inputText}
         ></input>
-        <ButtonWithImage
-          type="button"
-          onClick={buttonAddClick}
-          backgroundurl={plusPng}
-        ></ButtonWithImage>
+        {modalIsOpenKind === "Add" ? (
+          <ButtonWithImage
+            type="button"
+            onClick={buttonAddClick}
+            backgroundurl={plusPng}
+          ></ButtonWithImage>
+        ) : (
+          <ButtonWithImage
+            type="button"
+            onClick={uploadButtonHadler}
+            backgroundurl={uploadPng}
+          ></ButtonWithImage>
+        )}
       </InputBlockStyled>
     </div>
   );

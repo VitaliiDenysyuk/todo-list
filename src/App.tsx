@@ -1,5 +1,4 @@
 import React, { FormEvent } from "react";
-//import ReactModalInputStyled from "./components/ReactModalInput.style";
 import ReactModalInput from "react-modal";
 import Counters from "./components/Counters";
 import MainInputStyled from "./components/MainInput.style";
@@ -7,12 +6,9 @@ import TaskListStyled from "./components/TaskList.style";
 import { TitleButtonStyled } from "./components/ButtonWithImage.style";
 
 import { useAppDispatch, useAppSelector } from "./app/hook";
-import {
-  incrementCreated,
-  resetCounter,
-} from "./features/counters/counter-slice";
+import { resetCounter } from "./features/counters/counter-slice";
 import { setModalIsClosed, setModalIsOpen } from "./features/modal/modal-slice";
-import { addItem, resetTodoList } from "./features/todoList/todoList-slice";
+import { resetTodoList } from "./features/todoList/todoList-slice";
 
 import "./App.mudule.scss";
 
@@ -22,18 +18,7 @@ import filterPng from "./img/filter.png";
 import noFilterPng from "./img/nofilter.png";
 import plusPng from "./img/plus.png";
 
-import { getRandomColor } from "./help/general";
-import {
-  cleanInputText,
-  setInputText,
-} from "./features/inputText/inputText-slice";
 import { setFiltered, setNoFiltered } from "./features/filter/filter-slice";
-
-interface OneItemUpload {
-  text: string;
-  isCompleted: boolean;
-  id: string;
-}
 
 const customStyles = {
   content: {
@@ -56,50 +41,22 @@ const customStyles = {
     backgroundColor: "white",
     boxShadow: "4px 4px 7px",
     color: "#2c2c2c",
-    // transform: "translate(-50%, -50%)",
   },
 };
 
 const App = () => {
   const counter = useAppSelector((state) => state.counters);
-  const modalIsOpen = useAppSelector((state) => state.modal.value);
+  const modalIsOpen = useAppSelector((state) => state.modal);
   const filter = useAppSelector((state) => state.filter.value);
-
   const dispatch = useAppDispatch();
-
-  const inputText = useAppSelector((state) => state.inputText.value);
 
   ReactModalInput.setAppElement("#root");
   const openModal = () => {
-    dispatch(setModalIsOpen());
+    dispatch(setModalIsOpen("Add"));
   };
 
   const uploadButtonHadler = async () => {
-    if (!inputText) {
-      dispatch(setInputText("Set url for upload here"));
-      return;
-    }
-    try {
-      const response = await fetch(inputText, {
-        method: "GET",
-      });
-      const body = await response.json();
-      body.map((item: OneItemUpload) =>
-        dispatch(
-          addItem({
-            text: item.text,
-            finished: item.isCompleted,
-            key: item.id + " " + Date.now(),
-            deleted: false,
-            textColor: getRandomColor(),
-          })
-        )
-      );
-      dispatch(cleanInputText());
-      dispatch(incrementCreated(body.body.length));
-    } catch (err) {
-      dispatch(setInputText(`Error: ${err}`));
-    }
+    dispatch(setModalIsOpen("Upload"));
   };
 
   const cleanButtonHadler = () => {
@@ -126,12 +83,12 @@ const App = () => {
   return (
     <div id="app" className="App">
       <ReactModalInput
-        isOpen={modalIsOpen}
+        isOpen={modalIsOpen.value}
         onRequestClose={closeModal}
         shouldCloseOnEsc={true}
         style={customStyles}
         // shouldCloseOnOverlayClick={false}
-        contentLabel="Add new task"
+        contentLabel="Add new tasks"
       >
         <form onSubmit={handlerOnSubmitMainInput}>
           <MainInputStyled />

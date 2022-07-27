@@ -1,11 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModalState {
   value: boolean;
+  kind: string;
 }
 
 const initialState: ModalState = {
   value: false,
+  kind: "",
 };
 
 const modalSlice = createSlice({
@@ -13,14 +15,16 @@ const modalSlice = createSlice({
   initialState,
 
   reducers: {
-    setModalIsOpen(state) {
+    setModalIsOpen(state, action: PayloadAction<string>) {
       // it's okay to do this because immer makes it immutable
       // under the hood
       state.value = true;
+      state.kind = action.payload;
     },
 
     setModalIsClosed(state) {
       state.value = false;
+      state.kind = "";
     },
   },
 });
