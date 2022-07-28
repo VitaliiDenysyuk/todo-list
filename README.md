@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# TODO list
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple should be simple, but with a twist
 
-## Available Scripts
+Take a simple project and use best practices
 
-In the project directory, you can run:
+## Start
 
-### `npm start`
+1. Getting Started with [`create-react-app`](https://create-react-app.dev/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Implement TODO app with next logic:
+    - user can create task, by entering some text to input, and clicking submit button
+    - user can read created tasks in list
+    - user can update each task, by clicking on "edit" button near task text, changing task text in input and pressing "save" button when complete
+    - user can delete each task, by clicking on "delete" button near task text 
+3. Add statistic counter on top of tasks list to show count of:
+    - created tasks
+    - updated tasks
+    - deleted tasks
+4. Add functionality to fetch initial list of TODO tasks to your list. Use GET request from resource link [https://gist.githubusercontent.com/alexandrtovmach/0c8a29b734075864727228c559fe9f96/raw/c4e4133c9658af4c4b3474475273b23b4a70b4af/todo-task.json](https://gist.githubusercontent.com/alexandrtovmach/0c8a29b734075864727228c559fe9f96/raw/c4e4133c9658af4c4b3474475273b23b4a70b4af/todo-task.json), to receive array of objects.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Styling tools for React app
 
-### `npm test`
+1. Use [styled-components](https://styled-components.com/)
+2. Add [Quick guide about SCSS(Sass)](https://sass-lang.com/guide) and [Sass in create-react-app](https://create-react-app.dev/docs/adding-a-sass-stylesheet)
+3. Implement [css-modules](https://github.com/css-modules/css-modules) and [css-modules in create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Redux
 
-### `npm run build`
+1. Create `<Modal />` component or install and use any package (for example: `react-modal`)
+2. Move input component with all related logic inside `<Modal />`
+3. Update your logic of creating/updating todo list items, to use redux store instead of react state. After this update you shouldn't have any props, that trows handler functions and todo items between components. Instead all data should be taken from redux store, and all data changing handlers should be changed to redux actions.
+4. Add [redux-persist](https://github.com/rt2zz/redux-persist) to project and use it to save store to `localStorage`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Typescript
+1. Add Typescript to a ToDoList project and refactor all code to be "true" Typescript. Use official guide ["TypeScript for JavaScript Programmers"](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
