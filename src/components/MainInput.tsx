@@ -9,7 +9,7 @@ import {
   setInputText,
 } from "../features/inputText/inputText-slice";
 import { setModalIsClosed } from "../features/modal/modal-slice";
-import { InputBlockStyled, InputBlockTytleStyled } from "./MainInput.style";
+import { InputBlockStyled, InputBlockTytleStyled, InputStyled } from "./MainInput.style";
 
 import uploadPng from "../img/upload.png";
 import closePng from "../img/cross.png";
@@ -101,7 +101,7 @@ const MainInput = ({ className }: MainInputProps) => {
         ></ButtonWithImage>
       </InputBlockTytleStyled>
       <InputBlockStyled>
-        <input
+        <InputStyled
           autoComplete="off"
           placeholder={modalIsOpenKind === "Add" ?"":"Set url for upload here"}
           id="mainInput"
@@ -110,7 +110,7 @@ const MainInput = ({ className }: MainInputProps) => {
           onKeyDown={onKeyDownHandler}
           type="text"
           value={inputText}
-        ></input>
+        ></InputStyled>
         {modalIsOpenKind === "Add" ? (
           <ButtonWithImage
             type="button"

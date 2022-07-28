@@ -9,6 +9,11 @@ export const InputBlockTytleStyled = styled.div`
   flex-wrap: wrap;
 `;
 
+export const InputStyled = styled.input`
+  flex-basis: calc(100% - 3rem);
+  font-size: 1rem;
+`;
+
 export const InputBlockStyled = styled.div`
   display: flex;
   justify-content: space-between;
@@ -24,12 +29,6 @@ const MainInputStyled = styled(MainInput)<MainInputProps>`
   flex-basis: 2rem;
   width: 100%;
   margin-bottom: 1rem;
-
-  & input {
-    flex-basis: calc(100% - 3.5rem);
-    padding: 0rem 0.5rem 0rem 0.5rem;
-    font-size: 1.4rem;
-  }
 
   & button {
     font-size: 2rem;
