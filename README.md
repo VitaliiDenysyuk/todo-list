@@ -29,8 +29,12 @@ Take a simple project and use best practices
 
 1. Create `<Modal />` component or install and use any package (for example: `react-modal`)
 2. Move input component with all related logic inside `<Modal />`
-3. Update your logic of creating/updating todo list items, to use redux store instead of react state. After this update you shouldn't have any props, that trows handler functions and todo items between components. Instead all data should be taken from redux store, and all data changing handlers should be changed to redux actions.
+3. Update logic of creating/updating todo list items, to use redux store instead of react state. After this update it shouldn't have any props, that trows handler functions and todo items between components. Instead all data should be taken from redux store, and all data changing handlers should be changed to redux actions.
 4. Add [redux-persist](https://github.com/rt2zz/redux-persist) to project and use it to save store to `localStorage`.
 
 ## Typescript
 1. Add Typescript to a ToDoList project and refactor all code to be "true" Typescript. Use official guide ["TypeScript for JavaScript Programmers"](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+
+## Deploy
+
+1. Deploying to GitHub Pages 
