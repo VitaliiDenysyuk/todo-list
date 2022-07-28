@@ -63,7 +63,6 @@ const MainInput = ({ className }: MainInputProps) => {
 
   const uploadButtonHadler = async () => {
     if (!inputText) {
-      dispatch(setInputText("Set url for upload here"));
       return;
     }
     try {

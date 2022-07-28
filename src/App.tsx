@@ -19,6 +19,7 @@ import noFilterPng from "./img/nofilter.png";
 import plusPng from "./img/plus.png";
 
 import { setFiltered, setNoFiltered } from "./features/filter/filter-slice";
+import { cleanInputText } from "./features/inputText/inputText-slice";
 
 const customStyles = {
   content: {
@@ -57,6 +58,7 @@ const App = () => {
   };
 
   const uploadButtonHadler = async () => {
+    dispatch(cleanInputText());
     dispatch(setModalIsOpen("Upload"));
   };
 
