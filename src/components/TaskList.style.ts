@@ -4,7 +4,7 @@ import TaskList from "./TaskList";
 const TaskListStyled = styled(TaskList)`
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   width: 80%;
 `;
 

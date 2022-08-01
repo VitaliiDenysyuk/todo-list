@@ -8,8 +8,11 @@ const CountersStyled = styled.div`
   font-family: cursive;
   font-style: italic;
   text-transform: uppercase;
-  margin: 0;
-  padding: 5px 0 5px 0;
+  margin: 0rem;
+  padding: 0px;
+  p {
+    padding: 5px 0px 5px 0px;
+  }
 `;
 
 export default CountersStyled;
